@@ -1,8 +1,6 @@
-import React,{useState,useEffect} from 'react'
-import {View , Text, Button,StyleSheet, Linking } from 'react-native'
-import { color, event } from 'react-native-reanimated';
-import MenuComponent from './MenuComponent';
-import { getRemoteData } from './Util';
+import React, {useEffect, useState} from 'react'
+import {Button, Linking, StyleSheet, Text, View} from 'react-native'
+import {getRemoteData} from './Util';
 
 const styles = StyleSheet.create({
     container: {
@@ -11,7 +9,6 @@ const styles = StyleSheet.create({
         flexWrap: 'nowrap',
         alignItems: 'flex-start' ,
         marginLeft: 20,
-        alignItems:'center',
         width:"95%"
       },
       item: {

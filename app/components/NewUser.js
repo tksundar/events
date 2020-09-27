@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import {View, Button,Text,StyleSheet, TextInput} from 'react-native'
-import { color } from 'react-native-reanimated';
+import React, {useState} from 'react'
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util'
 
-const NewUser = () =>{
+const NewUser = ({navigation}) =>{
 
     const [username, setUsername] = useState('');
     const [password,setPassword] = useState('');
@@ -51,7 +50,6 @@ const NewUser = () =>{
                 setErrorMessage('If you are seeing this, this is an application bug. Contact adminsitartor')
         }
 
-        return  
         
     }
 
@@ -87,10 +85,6 @@ const NewUser = () =>{
 
 return(
     <>
-
-    {/* <View style={styles.banner}>
-        <Text style={{color:'white',fontSize:20,fontWeight: "bold",margin:20}}>Events App</Text>
-    </View> */}
     <View style={styles.vFlex}/>
         <View style={styles.hflex}>
             <View style={{alignItems:'flex-start',margin:5}}>
@@ -106,7 +100,7 @@ return(
         <View style={styles.hflex}>
         <View style={{alignItems:'flex-start',margin:5}}>
             <Text>Mobile</Text>
-            <TextInput style={styles.item} placeholder="Mobile" onChangeText={(text)=> setMobile({mobile:text})}></TextInput>
+            <TextInput style={styles.item} placeholder="Mobile" onChangeText={(text)=> setMobile({mobile:text})}/>
         </View>
         </View>
         <View style={styles.hflex}>

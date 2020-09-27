@@ -1,9 +1,7 @@
-import React,{useState,useEffect} from 'react'
-import { Suspense } from 'react';
-import {View , Text, Button,StyleSheet, Linking } from 'react-native'
-import { ScrollView, TextInput } from 'react-native-gesture-handler';
-import { getRemoteData } from './Util';
-
+import React, {useState} from 'react'
+import {Button, StyleSheet, Text, View} from 'react-native'
+import {ScrollView, TextInput} from 'react-native-gesture-handler';
+import {getRemoteData} from './Util';
 
 
 const EventRegistration = ({route,navigation}) =>{
@@ -20,12 +18,6 @@ const EventRegistration = ({route,navigation}) =>{
     const [modeOfTravel,setModeOfTravel] = useState('')
     const [pickup,setPickup] = useState('')
     const [error,setError] = useState('')
-    const [registration,setRegistration] = useState('')
-
-    const yesNo = [{
-        "value" : 'Yes'},
-        {"value":"No"}
-    ]
 
      const handleSubmit = async ()=>{
         console.log('Event Registration.handleSubmit called with',event.event_name,
@@ -55,7 +47,7 @@ const EventRegistration = ({route,navigation}) =>{
         formData.append('departure_date',departureDate.departureDate)
         formData.append('mode_of_travel',_mt)
         formData.append('pickup',_pickup)
-        response = await getRemoteData('http://192.168.0.103:8000/events/create',formData)
+        const response = await getRemoteData('http://192.168.0.103:8000/events/create',formData)
         console.log(response.staus,'\n',response.data)
         if(response.data.update==='success'){
                  navigation.navigate('SuccessPage')

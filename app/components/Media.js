@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react'
-import { getRemoteData } from './Util'
-import {Image,ScrollView} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {getRemoteData} from './Util'
+import {Image, ScrollView} from 'react-native'
 
 export const ShowMedia = ({route,navigation})=>{
 
@@ -24,7 +24,7 @@ export const ShowMedia = ({route,navigation})=>{
     }
     useEffect( () => {getUrls()},[] )
 
-    const pictures = new Array();
+    const pictures = [];
 
     for(let i =0;i<urls.length;i++){
         let destination = url + urls[i];

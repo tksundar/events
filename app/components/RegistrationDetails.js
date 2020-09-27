@@ -1,6 +1,6 @@
 import React from 'react'
-import {View,Text} from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import {Text, View} from 'react-native'
+import {ScrollView} from 'react-native-gesture-handler'
 
 const RegistrationDetails = ({route,navigation})=>{
 
@@ -10,7 +10,7 @@ const RegistrationDetails = ({route,navigation})=>{
     const keys = Object.keys(registration)
 
 
-    const rows = new Array()
+    const rows = []
 
     keys.forEach(key => {
         let row =  

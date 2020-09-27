@@ -1,14 +1,13 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import Login from './Login'
-import {Events, EventDetail}  from './Events'
+import {EventDetail, Events} from './Events'
 import EventRegistration from './EventRegistration';
 import NewUser from './NewUser';
 import SuccessPage from './SuccessPage';
 import RegistrationDetails from './RegistrationDetails'
-import { Button , Text} from 'react-native';
 import MenuComponent from './MenuComponent'
 import {ShowMedia} from './Media'
 

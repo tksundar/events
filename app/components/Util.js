@@ -7,16 +7,14 @@ export const getRemoteData = async (url, data)=>{
     try{
         if (data === undefined){
             console.log('No form Data. Calling GET')
-            const response = await axios.get(url);
-            return response;
+            return await axios.get(url);
         }
         else{
             console.log('Sending POST request')
-            const response = await axios.post(url,data)
-            return response
+            return await axios.post(url, data)
         }
     }catch(error){
-    console.log('error receiving resspone, ' , error)
+    console.log('error receiving response, ' , error)
     return {'Error':error}
     }
 

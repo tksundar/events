@@ -1,6 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Button, Menu, Divider, Provider } from 'react-native-paper';
+import {View} from 'react-native';
+import {Button, Divider, Menu, Provider} from 'react-native-paper';
 
 const MenuComponent = () => {
     const [visible, setVisible] = React.useState(false);

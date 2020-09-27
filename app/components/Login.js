@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
-import {View, Button,Text,Stylesheet, TextInput} from 'react-native'
-import { color } from 'react-native-reanimated';
-import MenuComponent from './MenuComponent';
+import React, {useState} from 'react'
+import {Button, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util'
 
 
@@ -23,19 +21,15 @@ const Login = (props) => {
             navigation.navigate('Events',{'username':username.username})
         }else if(response.data.user==='valid' && response.data.password==='invalid'){
                  setError("Invalid Password")
-                 return
+
         }else{
             setError("User not recognized. Please register")
-            return
+
         }
     }
 
     return(
         <>
-        {/* <View style={{flex:0.1,justifyContent:'center',backgroundColor: 'grey' ,alignItems:'flex-end',margin:10}}>
-            <Text style={{color:'white',fontSize:20,fontWeight: "bold",margin:20}}>Events App</Text>
-        </View> */} 
-        
         <View style={{ flex: 0.9,marginLeft: 30,justifyContent:'space-evenly'}}>
             <View style={{alignItems:'flex-start'}}>
               <Text >Username</Text>
@@ -59,11 +53,6 @@ const Login = (props) => {
              </View>
        
         </View>
-       
-            
-                
-            
-       
         </>
     )
 
