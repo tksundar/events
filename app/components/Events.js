@@ -1,12 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import {View , Text, Button,StyleSheet, Linking } from 'react-native'
 import { color, event } from 'react-native-reanimated';
+import MenuComponent from './MenuComponent';
 import { getRemoteData } from './Util';
 
-
-export const EventDetail = ({route,navigation})=>{
- 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
@@ -34,65 +32,94 @@ export const EventDetail = ({route,navigation})=>{
       },
       clrGrey:{
           backgroundColor:"lightgrey"
+      },
+      rowStyle:{
+          flexDirection:'row',
+          margin:10
       }
+
 })
+export const EventDetail = ({route,navigation})=>{
+ 
+    console.log(route.params)
+    const {event,username} = route.params
+    const {event_name,event_venue,event_admin,event_date,event_time,event_description,event_link}=event
+    const [registration,setRegistration] = useState([])
+
+    const checkRegistration = async () =>{
+        let checkUrl = 'http://192.168.0.103:8000/events/check';
+        let formData = new FormData();
+        formData.append('name',username.username);
+        formData.append('event_name',event.event_name);
+        const response = await getRemoteData(checkUrl,formData);
+        if(response.data.name===username.username){
+            setRegistration(response.data)
+            //navigation.navigate('RegistrationDetails',registration)
+        }
+    }
+
+    useEffect( () => {checkRegistration(registration)},[] )
     
-    // const keys = Object.keys(route.params)
-    const {event_link} = route.params
-    console.log(event_link)
-    //const elements= Array()
-    //console.log(keys)
-   // console.log(route.params)
-
     return(
-
-        <View style={{flex: 0.7,justifyContent:"space-around",marginTop:"5%"}}>
+          <>
+          <View style={{alignItems:'flex-end', margin:10}}><Text>{username.username}</Text></View>
+          <View style={{flex: 1,justifyContent:"space-around",marginTop:"5%"}}>
                 <View style={[styles.container,styles.clrGrey]}>
                     <Text style={styles.item}>Event Name</Text>
-                    <Text style={styles.item}>{route.params.event_name}</Text>
+                    <Text style={styles.item}>{event_name}</Text>
                 </View>
                 <View style={styles.container}>
                     <Text style={styles.item}>Event Venue</Text>
-                    <Text style={styles.item}>{route.params.event_venue}</Text>
+                    <Text style={styles.item}>{event_venue}</Text>
                 </View>
                 <View style={[styles.container,styles.clrGrey]}>
                     <Text style={styles.item}>Event Date</Text>
-                    <Text style={styles.item}>{route.params.event_date}</Text>
+                    <Text style={styles.item}>{event_date}</Text>
                 </View>
                 <View style={styles.container}>
                     <Text style={styles.item}>Event time</Text>
-                    <Text style={styles.item}>{route.params.event_time}</Text>
+                    <Text style={styles.item}>{event_time}</Text>
                 </View>
                 <View style={[styles.container,styles.clrGrey]}>
                     <Text style={styles.item}>Event Description</Text>
-                    <Text style={styles.item}>{route.params.event_description}</Text>
+                    <Text style={styles.item}>{event_description}</Text>
                 </View>
                 <View style={styles.container}>
                     <Text style={styles.item}>Event Admin(s)</Text>
-                    <Text style={styles.item}>{route.params.event_admin}</Text>
+                    <Text style={styles.item}>{event_admin}</Text>
                 </View>
                 <View style={[styles.container,styles.clrGrey]}>
                     <Text style={styles.item}>Venue Link</Text>
                     <Text style={styles.link} 
                      onPress={()=>Linking.openURL(event_link)}>{event_link}</Text>
                 </View>
-            <View style={styles.button}>
-            <Button title="Register" onPress={()=>navigation.navigate("EventRegistration",route.params)}></Button>
+            <View style={[styles.button,styles.rowStyle]}>
+                <View style={{margin:10}}>
+                    <Button title="Register" onPress={()=>{
+                        if(registration.name===username.username){
+                            navigation.navigate('RegistrationDetails',registration)
+                        }else{
+                        navigation.navigate("EventRegistration",{'event':event,'username':username})
+                        }
+                        }}/>
+                </View>
+                <View style={{margin:10}}>
+                  <Button title="View Media" onPress={()=> navigation.navigate("ShowMedia",event)}/>
+                 </View>
             </View>
         </View>
+        </>
     )
 
 }
 
-export const Events = (props)=>{
+export const Events = ({route,navigation})=>{
 
     const [events,setEvents] = useState([]);
-    
-    const {navigation} = props
-
+    const {username} = route.params
     
      const fetchEvents = async () => {
-        const response = await getRemoteData('http://192.168.0.104:8000/events')
+        const response = await getRemoteData('http://192.168.0.103:8000/events')
         if(response.status === 200){
             console.log(response.data)
             setEvents(response.data)
@@ -106,18 +133,19 @@ export const Events = (props)=>{
     // onPress={navigation.navigate('EventDetail',e)}
 
     const element = events.map((e,index)=>{
-        return (
-            <View key={index} style={{ alignItems: 'center'}} >
-                <Button title={e.event_name} onPress={()=>navigation.navigate("EventDetail",e)}></Button> 
+        return (  
+            <View key={index} style={{flexDirection: 'row', alignItems: 'center'}} >
+                <Text>{index+1})</Text><Text style={styles.link} onPress={()=>navigation.navigate("EventDetail",{'event':e,'username':{username}})}>{e.event_name}</Text>          
             </View> 
+        
         )
     })
 
     return(
-
-        <View style={{flex: 0.5 , justifyContent:'space-around'}}>
+        <View style={{ justifyContent:'flex-start', alignItems:'flex-start', margin:20}}>
+            <Text style={{alignItems:'flex-end'}}>{username.username}</Text>
             {element}
-           </View>
+        </View>
     )
 }
 
