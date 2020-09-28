@@ -11,42 +11,40 @@ import RegistrationDetails from './RegistrationDetails'
 import MenuComponent from './MenuComponent'
 import {ShowMedia} from './Media'
 
-const App = ()=>{
- const Stack = createStackNavigator();
+const App = () => {
+    const Stack = createStackNavigator();
 
- const media = () =>{
-   return(
-     <MenuComponent />
-   )
- }
-
- 
-    return(
-      <NavigationContainer >
-          <Stack.Navigator initialRouteName="Login" default>
-             <Stack.Screen name="Login" component={Login}
-             options={{title: 'Login',headerTitleAlign:'center' }}  />
-             <Stack.Screen name="Register" component={NewUser}
-             options={{title: 'New User Registration',headerTitleAlign:'center'}} />
-             <Stack.Screen name="Events" component={Events} 
-             options={{title: 'Events',headerTitleAlign:'center'}} />
-             <Stack.Screen name="EventDetail" component={EventDetail}
-            options={{title: '  Event Details',headerTitleAlign:'center'}}  />
-             <Stack.Screen name="EventRegistration" component={EventRegistration} 
-             options={{title: '   Event Registration',headerTitleAlign:'center'}} />
-             <Stack.Screen name="SuccessPage" component={SuccessPage} 
-             options={{title: '   Registration Successful',headerTitleAlign:'center'}} />
-              <Stack.Screen name="RegistrationDetails" component={RegistrationDetails} 
-             options={{title: '   Registration Details',headerTitleAlign:'center'}} />
-              <Stack.Screen name="ShowMedia" component={ShowMedia} 
-             options={{title: '   View  Media',headerTitleAlign:'center'}} />
-             
+    const media = () => {
+        return (
+            <MenuComponent/>
+        )
+    }
 
 
-          </Stack.Navigator>    
-      </NavigationContainer>
-            
-        
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Login" default>
+                <Stack.Screen name="Login" component={Login}
+                              options={{title: 'Login', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="Register" component={NewUser}
+                              options={{title: 'New User Registration', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="Events" component={Events}
+                              options={{title: 'Events', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="EventDetail" component={EventDetail}
+                              options={{title: '  Event Details', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="EventRegistration" component={EventRegistration}
+                              options={{title: '   Event Registration', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="SuccessPage" component={SuccessPage}
+                              options={{title: '   Registration Successful', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="RegistrationDetails" component={RegistrationDetails}
+                              options={{title: '   Registration Details', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="ShowMedia" component={ShowMedia}
+                              options={{title: '   View  Media', headerTitleAlign: 'center'}}/>
+
+            </Stack.Navigator>
+        </NavigationContainer>
+
+
     )
 }
 

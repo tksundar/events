@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Button, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util'
+import {URL_LOGIN} from "./Constants";
 
 
 const Login = (props) => {
@@ -9,13 +10,14 @@ const Login = (props) => {
     const [password,setPassword] = useState('');
     const [ error, setError] = useState('');
     const {navigation} = props
+   // const URL = "192.168.0.103:8000/events/login"
 
     const handleSubmit = async()=>{
         console.log('HandleSubmit called with values ',username.username,password.password)
         const formData = new FormData();
         formData.append('username', username.username)
         formData.append('password',password.password)
-        const response = await getRemoteData('http://192.168.0.103:8000/events/login',formData)  
+        const response = await getRemoteData(URL_LOGIN,formData)
         console.log(response.status, response.data)
         if(response.data.user==='valid' && response.data.password==='valid'){
             navigation.navigate('Events',{'username':username.username})

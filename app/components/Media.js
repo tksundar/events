@@ -1,48 +1,48 @@
 import React, {useEffect, useState} from 'react'
 import {getRemoteData} from './Util'
 import {Image, ScrollView} from 'react-native'
+import {URL_DISPLAY_MEDIA,URL_PREFIX} from './Constants'
 
-export const ShowMedia = ({route,navigation})=>{
+export const ShowMedia = ({route, navigation}) => {
 
     const event = route.params
     const {event_name} = event
     const [urls, setUrls] = useState([])
-    const url = 'http://192.168.0.103:8000/events/'
     console.log(event)
 
-    const getUrls = async ()=>{
-        let action = 'display';
+    const getUrls = async () => {
         let formData = new FormData();
-        formData.append('event_name',event_name)
-        const response = await getRemoteData(url+action,formData)
-        console.log(response)
-        if(response.status === 200){
-            console.log(response)
+        formData.append('event_name', event_name)
+        const response = await getRemoteData(URL_DISPLAY_MEDIA, formData)
+        if (response.status === 200) {
             setUrls(response.data)
-            console.log(urls)
         }
     }
-    useEffect( () => {getUrls()},[] )
+    useEffect(() => {
+        getUrls()
+    }, [])
 
     const pictures = [];
 
-    for(let i =0;i<urls.length;i++){
-        let destination = url + urls[i];
-        console.log('---',destination)
-        let picture = <Image key={i} source={destination}  
-        style = {{height: 200, resizeMode : 'stretch', margin: 5 }} />
+    for (let i = 0; i < urls.length; i++) {
+        let destination = URL_PREFIX + urls[i];
+        console.log('---', destination)
+        let picture = <Image key={i} source={{uri: destination}}
+                             style={{height: 200, resizeMode: 'stretch', margin: 5}}/>
+
         pictures.push(picture)
+        console.log(picture)
     }
 
-    return(
-      
-         <ScrollView>
-             {pictures}
-         </ScrollView>
+    return (
+
+        <ScrollView>
+            {pictures}
+        </ScrollView>
     )
 
 }
 
-export const UploadMedia = ()=>{
+export const UploadMedia = () => {
 
 }
