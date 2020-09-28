@@ -152,9 +152,9 @@ android {
         }
         release {
             storeFile file('events.keystore')
-            storePassword System.console.readPassword('\nEnter store password')
+            storePassword "xxxxxx"
             keyAlias "eventsreleasekey"
-            keyPassword System.console.readPassword('\nEnter Key Password')
+            keyPassword "xxxxxx"
         }
     }
     buildTypes {

@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react'
 import {getRemoteData} from './Util'
 import {Image, ScrollView, Text, View} from 'react-native'
 import {URL_DISPLAY_MEDIA, URL_PREFIX} from './Constants'
+import Spinner from "./Spinner";
 
 export const ShowMedia = ({route, navigation}) => {
 
     const event = route.params
     const {event_name} = event
     const [urls, setUrls] = useState([])
+    const [loading, setLoading] = useState(true)
     console.log(event)
 
     const getUrls = async () => {
@@ -16,6 +18,7 @@ export const ShowMedia = ({route, navigation}) => {
         const response = await getRemoteData(URL_DISPLAY_MEDIA, formData)
         if (response.status === 200) {
             setUrls(response.data)
+            setLoading(false)
         }
     }
     useEffect(() => {
@@ -34,15 +37,26 @@ export const ShowMedia = ({route, navigation}) => {
         console.log(picture)
     }
 
+    const getElement = ()=>{
+        if(loading===true){
+            return (<Spinner />)
+        }else{
+            return (
+                <>
+                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                        <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+                    </View>
+                    <ScrollView>
+                        {pictures}
+                    </ScrollView>
+                </>
+            )
+        }
+    }
+
     return (
-        <>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
-            </View>
-            <ScrollView>
-                {pictures}
-            </ScrollView>
-        </>
+
+       getElement()
     )
 
 }

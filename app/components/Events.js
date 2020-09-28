@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Button, Linking, StyleSheet, Text, View} from 'react-native'
 import {getRemoteData} from './Util';
 import {URL_CHECK_USER, URL_EVENTS} from './Constants'
+import Spinner from "./Spinner";
 
 const styles = StyleSheet.create({
     container: {
@@ -160,15 +161,17 @@ export const EventDetail = ({route, navigation}) => {
 export const Events = ({route, navigation}) => {
 
     const [events, setEvents] = useState([]);
-    const {username} = route.params
+    const [loading, setLoading] = useState(true);
+    const {username} = route.params;
 
     const fetchEvents = async () => {
         const response = await getRemoteData(URL_EVENTS)
         if (response.status === 200) {
-            console.log(response.data)
-            setEvents(response.data)
+            console.log(response.data);
+            setEvents(response.data);
+            setLoading(false);
         } else {
-            console.log('Error retrieving events data')
+            console.log('Error retrieving events data');
         }
     }
 
@@ -191,19 +194,29 @@ export const Events = ({route, navigation}) => {
         )
     })
 
+    const getElement = ()=>{
+         if(loading === true){
+            return <Spinner />
+       }
+        else{
+            return (
+                  <>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+            </View>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>{username}</Text>
+            </View>
+            <View style={{justifyContent: 'flex-start', alignItems: 'flex-start', margin: 20}}>
+                <Text style={{alignItems: 'flex-end'}}>{username.username}</Text>
+                {element}
+            </View>
+        </>
+            )
+        }
+    }
     return (
-        <>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end'}}>Events App</Text>
-                </View>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end'}}>{username}</Text>
-                </View>
-        <View style={{justifyContent: 'flex-start', alignItems: 'flex-start', margin: 20}}>
-            <Text style={{alignItems: 'flex-end'}}>{username.username}</Text>
-            {element}
-        </View>
-            </>
+        getElement()
     )
 }
 
