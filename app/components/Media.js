@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {getRemoteData} from './Util'
-import {Image, ScrollView} from 'react-native'
-import {URL_DISPLAY_MEDIA,URL_PREFIX} from './Constants'
+import {Image, ScrollView, Text, View} from 'react-native'
+import {URL_DISPLAY_MEDIA, URL_PREFIX} from './Constants'
 
 export const ShowMedia = ({route, navigation}) => {
 
@@ -35,10 +35,14 @@ export const ShowMedia = ({route, navigation}) => {
     }
 
     return (
-
-        <ScrollView>
-            {pictures}
-        </ScrollView>
+        <>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+            </View>
+            <ScrollView>
+                {pictures}
+            </ScrollView>
+        </>
     )
 
 }

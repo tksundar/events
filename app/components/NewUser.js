@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native'
+import {Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util'
 import {URL_NEW_USER} from "./Constants"
 
@@ -85,50 +85,55 @@ const NewUser = ({navigation}) => {
 
     return (
         <>
-            <View style={styles.vFlex}/>
-            <View style={styles.hflex}>
-                <View style={{alignItems: 'flex-start', margin: 5}}>
-                    <Text>Username</Text>
-                    <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
-                               placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
-                </View>
-                <View style={{alignItems: 'flex-start', margin: 5}}>
-                    <Text>Email Address</Text>
-                    <TextInput style={styles.item} placeholder="Email Address"
-                               onChangeText={(text) => setEmail({email: text})}/>
-                </View>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
             </View>
-            <View style={styles.hflex}>
-                <View style={{alignItems: 'flex-start', margin: 5}}>
-                    <Text>Mobile</Text>
-                    <TextInput style={styles.item} placeholder="Mobile"
-                               onChangeText={(text) => setMobile({mobile: text})}/>
-                </View>
-            </View>
-            <View style={styles.hflex}>
-                <View style={{alignItems: 'flex-start', margin: 5}}>
-                    <Text>Password</Text>
-                    <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
-                               placeholder='password' secureTextEntry={true}
-                               onChangeText={(text) => setPassword({password: text})}/>
-                </View>
-                <View style={{alignItems: 'flex-start', margin: 5}}>
-                    <Text>Confirm Password</Text>
-                    <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
-                               placeholder='password' secureTextEntry={true}
-                               onChangeText={(text) => setConfirmPassword({confirmPassword: text})}/>
-                </View>
-            </View>
-            <View style={styles.hflex}>
-                <View style={{alignItems: 'flex-start'}}>
-                    <Button title="Submit" onPress={handleSubmit}/>
-                </View>
-            </View>
-            <View style={styles.hflex}>
-                <View>
-                    <Text>{errorMessage}</Text>
-                </View>
-            </View>
+
+                <ScrollView style={{marginLeft: 20}}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Username</Text>
+                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                                   placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
+                    </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Email Address</Text>
+                        <TextInput style={styles.item} placeholder="Email Address"
+                                   onChangeText={(text) => setEmail({email: text})}/>
+                    </View>
+
+
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Mobile</Text>
+                        <TextInput style={styles.item} placeholder="Mobile"
+                                   onChangeText={(text) => setMobile({mobile: text})}/>
+                    </View>
+
+
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Password</Text>
+                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                                   placeholder='password' secureTextEntry={true}
+                                   onChangeText={(text) => setPassword({password: text})}/>
+                    </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Confirm Password</Text>
+                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                                   placeholder='password' secureTextEntry={true}
+                                   onChangeText={(text) => setConfirmPassword({confirmPassword: text})}/>
+                    </View>
+
+
+                        <View style={{alignItems: 'flex-start'}}>
+                            <Button title="Submit" onPress={handleSubmit}/>
+                        </View>
+
+                    <View style={styles.hflex}>
+                        <View>
+                            <Text>{errorMessage}</Text>
+                        </View>
+                    </View>
+                </ScrollView>
+
         </>
     )
 }

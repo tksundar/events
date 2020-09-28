@@ -16,7 +16,7 @@ const RegistrationDetails = ({route, navigation}) => {
         let row =
             <View key={key} style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', marginLeft: 10}}>
                 <View style={{
-                    backgroundColor: '#0A4047',
+                    backgroundColor: '#4059bf',
                     flexDirection: 'row', alignItems: 'flex-start', marginLeft: 10,
                     flexGrow: 1,
                 }}>
@@ -32,6 +32,12 @@ const RegistrationDetails = ({route, navigation}) => {
 
     return (
         <>
+             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
+                    <Text style={{color:'white',alignItems:'flex-end'}}>Events App</Text>
+                </View>
+             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
+                    <Text style={{color:'white',alignItems:'flex-end'}}>{registration.name}</Text>
+                </View>
             <View style={{justifyContent: 'flex-start', alignItems: 'center'}}>
                 <Text style={{fontWeight: 'bold'}}>Already Registered. Details given below</Text>
             </View>

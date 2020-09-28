@@ -32,8 +32,11 @@ const Login = (props) => {
 
     return(
         <>
+            <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
+                    <Text style={{color:'white',alignItems:'flex-end'}}>Events App</Text>
+                </View>
         <View style={{ flex: 0.9,marginLeft: 30,justifyContent:'space-evenly'}}>
-            <View style={{alignItems:'flex-start'}}>
+            <View style={{alignItems:'flex-start' }}>
               <Text >Username</Text>
               <TextInput style={{height: 40,width: 200, borderColor: 'gray', borderWidth: 1}}
               placeholder="username" onChangeText={(text)=> setUsername({username:text})}/>
