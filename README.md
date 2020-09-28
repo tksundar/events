@@ -1,6 +1,6 @@
 **Description**
 
-This is a react native project that interacts with a server for registering participants to various events listed.This was an excercise in learning and as such may not be useful to many. I am part of a group that organizes biennial events where all group members meet at some resort and spend  one or two days together. This effort requires registering participants, and arranging for thoer pick up to and from their point of entry, manging resprt reservations etc. This app is used for that purpose. 
+This is a react native project that interacts with a server for registering participants to various events listed.This was an excercise in learning and as such may not be useful to many. I am part of a group that organizes biennial events where all group members meet at some resort and spend  one or two days together. This effort requires registering participants, and arranging for their pick up to and from their point of entry, manging resort reservations etc. This app is used for that purpose. 
 
 **Server functionalities**
 
