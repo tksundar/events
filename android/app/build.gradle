@@ -152,9 +152,9 @@ android {
         }
         release {
             storeFile file('events.keystore')
-            storePassword "shr66uti"
+            storePassword "xxxx"
             keyAlias "eventsreleasekey"
-            keyPassword "shr66uti"
+            keyPassword "xxxx"
         }
     }
     buildTypes {
