@@ -4,7 +4,7 @@ import {Image, ScrollView, Text, View} from 'react-native'
 import {URL_DISPLAY_MEDIA, URL_PREFIX} from './Constants'
 import Spinner from "./Spinner";
 
-export const ShowMedia = ({route, navigation}) => {
+const ShowMedia = ({route, navigation}) => {
 
     const event = route.params
     const {event_name} = event
@@ -30,8 +30,10 @@ export const ShowMedia = ({route, navigation}) => {
     for (let i = 0; i < urls.length; i++) {
         let destination = URL_PREFIX + urls[i];
         console.log('---', destination)
-        let picture = <Image key={i} source={{uri: destination}}
-                             style={{height: 200, resizeMode: 'stretch', margin: 5}}/>
+        let picture = <Image key={i}
+                             source={{uri: destination} }
+                             style={{height: 200, resizeMode: 'stretch', margin: 5}}
+                            />
 
         pictures.push(picture)
         console.log(picture)
@@ -43,8 +45,8 @@ export const ShowMedia = ({route, navigation}) => {
         }else{
             return (
                 <>
-                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',margin:10}}>
+                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize:20,margin:10}}>Events App</Text>
                     </View>
                     <ScrollView>
                         {pictures}
@@ -61,6 +63,4 @@ export const ShowMedia = ({route, navigation}) => {
 
 }
 
-export const UploadMedia = () => {
-
-}
+export default ShowMedia

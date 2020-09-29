@@ -6,3 +6,4 @@ export const URL_EVENT_REGISTRATION="http://ec2-13-232-233-180.ap-south-1.comput
 export const URL_CHECK_USER="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events/check";
 export const URL_DISPLAY_MEDIA="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events/display";
 export const URL_PREFIX="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000";
+export const URL_UPLOAD_MEDIA="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events/upload";

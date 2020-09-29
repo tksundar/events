@@ -9,7 +9,8 @@ import NewUser from './NewUser';
 import SuccessPage from './SuccessPage';
 import RegistrationDetails from './RegistrationDetails'
 import MenuComponent from './MenuComponent'
-import {ShowMedia} from './Media'
+import ShowMedia from './ShowMedia'
+import UploadMedia from "./UploadMedia";
 
 const App = () => {
     const Stack = createStackNavigator();
@@ -40,6 +41,8 @@ const App = () => {
                               options={{title: '   Registration Details', headerTitleAlign: 'center'}}/>
                 <Stack.Screen name="ShowMedia" component={ShowMedia}
                               options={{title: '   View  Media', headerTitleAlign: 'center'}}/>
+                <Stack.Screen name="UploadMedia" component={UploadMedia}
+                              options={{title: '   Upload  Media', headerTitleAlign: 'center'}}/>
 
             </Stack.Navigator>
         </NavigationContainer>

@@ -18,10 +18,8 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     button: {
-        width: "50%",
-        margin: 20,
+        width: "40%",
         alignItems: 'stretch',
-        alignSelf: "center"
     },
     link: {
         width: '50%',
@@ -34,6 +32,7 @@ const styles = StyleSheet.create({
     },
     rowStyle: {
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         margin: 10
     }
 
@@ -138,7 +137,7 @@ export const EventDetail = ({route, navigation}) => {
                     <Text style={styles.link}
                           onPress={() => Linking.openURL(event_link)}>{event_link}</Text>
                 </View>
-                <View style={[styles.button, styles.rowStyle]}>
+                <View style={[styles.container, styles.rowStyle]}>
                     <View style={{margin: 10}}>
                         <Button title="Register" onPress={() => {
                             if (registration.name === username.username) {
@@ -150,6 +149,9 @@ export const EventDetail = ({route, navigation}) => {
                     </View>
                     <View style={{margin: 10}}>
                         <Button title="View Media" onPress={() => navigation.navigate("ShowMedia", event)}/>
+                    </View>
+                     <View style={{margin: 10}}>
+                        <Button title="Upload Media" onPress={() => navigation.navigate("UploadMedia", event)}/>
                     </View>
                 </View>
             </View>
