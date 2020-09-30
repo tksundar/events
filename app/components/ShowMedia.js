@@ -32,7 +32,7 @@ const ShowMedia = ({route, navigation}) => {
         console.log('---', destination)
         let picture = <Image key={i}
                              source={{uri: destination}}
-                             style={{height: 200, resizeMode: 'stretch', margin: 5}}
+                             style={{height: 200,width:200, resizeMode: 'contain', margin: 5}}
         />
 
         pictures.push(picture)
