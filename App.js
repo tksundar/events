@@ -1,29 +1,29 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 
-const Styles= StyleSheet.create({
+const Styles = StyleSheet.create({
 
     center: {
-        alignItems : "center"
+        alignItems: "center"
     }
 });
 
-const Greetings = (props) =>{
+const Greetings = (props) => {
 
-    return(
+    return (
         <View style={Styles.center}>
-            <Text>Hello, {props.name}</Text> 
+            <Text>Hello, {props.name}</Text>
         </View>
     );
 }
 
-const LotsOfGreetings = ()=>{
-    return(
-        <View style={[Styles.center,{top: 50}]}>
-          
-          <Greetings name="Rexaar"/>
-          <Greetings name="Babu"/>
-          <Greetings name="piku"/>
+const LotsOfGreetings = () => {
+    return (
+        <View style={[Styles.center, {top: 50}]}>
+
+            <Greetings name="Rexaar"/>
+            <Greetings name="Babu"/>
+            <Greetings name="piku"/>
 
         </View>
     )
@@ -33,25 +33,25 @@ const ButtonClick = () => {
 
     const [count, setCount] = useState(0);
 
-    return(
-        <View style={{flex:1}}>
-          <View style={{flex:1}}>
-          <LotsOfGreetings />
-          <LotsOfGreetings />
-          </View>
-          <View style={{flex:1}}>
-          <Text> You clicked {count} times</Text>
-          <Button style={{flex:1}}
-         
-            onPress={()=> {
-                setCount(count+1);
-            
-            }
-        
-        }
-                  title="Click Me"
-         />
-         </View>
+    return (
+        <View style={{flex: 1}}>
+            <View style={{flex: 1}}>
+                <LotsOfGreetings/>
+                <LotsOfGreetings/>
+            </View>
+            <View style={{flex: 1}}>
+                <Text> You clicked {count} times</Text>
+                <Button style={{flex: 1}}
+
+                        onPress={() => {
+                            setCount(count + 1);
+
+                        }
+
+                        }
+                        title="Click Me"
+                />
+            </View>
 
         </View>
     );

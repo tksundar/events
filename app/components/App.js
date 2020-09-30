@@ -36,7 +36,7 @@ const App = () => {
                 <Stack.Screen name="EventRegistration" component={EventRegistration}
                               options={{title: '   Event Registration', headerTitleAlign: 'center'}}/>
                 <Stack.Screen name="SuccessPage" component={SuccessPage}
-                              options={{title: '   Registration Successful', headerTitleAlign: 'center'}}/>
+                              options={{title: '   Action Status', headerTitleAlign: 'center'}}/>
                 <Stack.Screen name="RegistrationDetails" component={RegistrationDetails}
                               options={{title: '   Registration Details', headerTitleAlign: 'center'}}/>
                 <Stack.Screen name="ShowMedia" component={ShowMedia}

@@ -65,92 +65,91 @@ const EventRegistration = ({route, navigation}) => {
                 <Text style={{color: 'white', justifyContent: 'flex-end'}}>{username.username}</Text>
             </View>
 
-                <ScrollView style={{
-                    backgroundColor: '#d9e3f0',
-                    marginHorizontal: 20,
-                }}>
-                    <Text>{error.error}</Text>
+            <ScrollView style={{
+                backgroundColor: '#d9e3f0',
+                marginHorizontal: 20,
+            }}>
+                <Text>{error.error}</Text>
 
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Event Name</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_name}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Name</Text>
-                            <TextInput style={styles.item} defaultValue={username.username}
-                                       onChangeText={(text) => setName({name: text})}/>
-                        </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Event Name</Text>
+                        <TextInput style={styles.item}
+                                   placeholder={event.event_name}/>
                     </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Payment</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="Payment Amount"
-                                       onChangeText={(text) => setPayment({payment: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Payment Ref</Text>
-                            <TextInput style={styles.item} placeholder="Payment Ref"
-                                       onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
-                        </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Name</Text>
+                        <TextInput style={styles.item} defaultValue={username.username}
+                                   onChangeText={(text) => setName({name: text})}/>
                     </View>
+                </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Payment</Text>
+                        <TextInput style={styles.item}
+                                   placeholder="Payment Amount"
+                                   onChangeText={(text) => setPayment({payment: text})}/>
+                    </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Payment Ref</Text>
+                        <TextInput style={styles.item} placeholder="Payment Ref"
+                                   onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
+                    </View>
+                </View>
 
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Num of guests</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="1" onChangeText={(text) => setNumGuests({numGuests: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Num of Days</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="1" onChangeText={(text) => setNumDays({numDays: text})}/>
-                        </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Num of guests</Text>
+                        <TextInput style={styles.item}
+                                   placeholder="1" onChangeText={(text) => setNumGuests({numGuests: text})}/>
                     </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Arrival Date</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_date}
-                                       onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Arrival Time</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_time}
-                                       onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
-                        </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Num of Days</Text>
+                        <TextInput style={styles.item}
+                                   placeholder="1" onChangeText={(text) => setNumDays({numDays: text})}/>
                     </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Departure Date</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='' onChangeText={(text) => setDepartureDate({departureDate: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Mode Of Travel</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='Mode of Travel'
-                                       onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
-                        </View>
+                </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Arrival Date</Text>
+                        <TextInput style={styles.item}
+                                   placeholder={event.event_date}
+                                   onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
                     </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Pickup Required</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='No' onChangeText={(text) => setPickup({pickup: text})}/>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Arrival Time</Text>
+                        <TextInput style={styles.item}
+                                   placeholder={event.event_time}
+                                   onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
+                    </View>
+                </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Departure Date</Text>
+                        <TextInput style={styles.item}
+                                   placeholder='' onChangeText={(text) => setDepartureDate({departureDate: text})}/>
+                    </View>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Mode Of Travel</Text>
+                        <TextInput style={styles.item}
+                                   placeholder='Mode of Travel'
+                                   onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
+                    </View>
+                </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Pickup Required</Text>
+                        <TextInput style={styles.item}
+                                   placeholder='No' onChangeText={(text) => setPickup({pickup: text})}/>
 
-                        </View>
                     </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start'}}>
-                            <Button title="Submit" onPress={handleSubmit}/>
-                        </View>
+                </View>
+                <View style={styles.hflex}>
+                    <View style={{alignItems: 'flex-start'}}>
+                        <Button title="Submit" onPress={handleSubmit}/>
                     </View>
-                </ScrollView>
-
+                </View>
+            </ScrollView>
 
 
         </>

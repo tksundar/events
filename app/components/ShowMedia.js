@@ -31,22 +31,28 @@ const ShowMedia = ({route, navigation}) => {
         let destination = URL_PREFIX + urls[i];
         console.log('---', destination)
         let picture = <Image key={i}
-                             source={{uri: destination} }
+                             source={{uri: destination}}
                              style={{height: 200, resizeMode: 'stretch', margin: 5}}
-                            />
+        />
 
         pictures.push(picture)
         console.log(picture)
     }
 
-    const getElement = ()=>{
-        if(loading===true){
-            return (<Spinner />)
-        }else{
+    const getElement = () => {
+        if (loading === true) {
+            return (<Spinner/>)
+        } else {
             return (
                 <>
-                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',margin:10}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize:20,margin:10}}>Events App</Text>
+                    <View style={{
+                        backgroundColor: '#2196F3',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        margin: 10
+                    }}>
+                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
+                            App</Text>
                     </View>
                     <ScrollView>
                         {pictures}
@@ -58,7 +64,7 @@ const ShowMedia = ({route, navigation}) => {
 
     return (
 
-       getElement()
+        getElement()
     )
 
 }

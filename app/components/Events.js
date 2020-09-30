@@ -69,27 +69,28 @@ export const EventDetail = ({route, navigation}) => {
 
     keys.forEach((key, index) => {
         let backgroundColor = 'white';
-        if (index % 2 === 0){
+        if (index % 2 === 0) {
             backgroundColor = 'lightgrey'
         }
 
         let textStyle = styles.item;
-        let fn= fetchUrl;
-        let rowName= key
-        if(key === 'event_link'){
+        let fn = fetchUrl;
+        let rowName = key
+        if (key === 'event_link') {
             rowName = 'Event Link'
             textStyle = styles.link;
 
         }
         let row = <View key={index} style={{
-             flex: 1,
-             flexDirection: 'row',
-             flexGrow: 1,
-             flexWrap: 'nowrap',
-             justifyContent: 'flex-start',
-             alignItems: 'center',
-             width: "95%",
-             backgroundColor:backgroundColor}}>
+            flex: 1,
+            flexDirection: 'row',
+            flexGrow: 1,
+            flexWrap: 'nowrap',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            width: "95%",
+            backgroundColor: backgroundColor
+        }}>
             <Text style={styles.item}>{rowName}</Text>
             <Text style={textStyle} onPress={fn}>{event[key]}</Text>
         </View>
@@ -101,13 +102,13 @@ export const EventDetail = ({route, navigation}) => {
 
     return (
         <>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end'}}>Events App</Text>
-                </View>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end'}}>{username.username}</Text>
-                </View>
-            <View style={{flex: 1, justifyContent: "space-around", alignItems:'center', margin: "5%"}}>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+            </View>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end'}}>{username.username}</Text>
+            </View>
+            <View style={{flex: 1, justifyContent: "space-around", alignItems: 'center', margin: "5%"}}>
                 <View style={[styles.container, styles.clrGrey]}>
                     <Text style={styles.item}>Event Name</Text>
                     <Text style={styles.item}>{event_name}</Text>
@@ -150,7 +151,7 @@ export const EventDetail = ({route, navigation}) => {
                     <View style={{margin: 10}}>
                         <Button title="View Media" onPress={() => navigation.navigate("ShowMedia", event)}/>
                     </View>
-                     <View style={{margin: 10}}>
+                    <View style={{margin: 10}}>
                         <Button title="Upload Media" onPress={() => navigation.navigate("UploadMedia", event)}/>
                     </View>
                 </View>
@@ -185,35 +186,35 @@ export const Events = ({route, navigation}) => {
 
     const element = events.map((e, index) => {
         return (
-            <View key={index} style={{flexDirection: 'row', alignItems: 'center', }}>
+            <View key={index} style={{flexDirection: 'row', alignItems: 'center',}}>
 
-                <Text style={{backgroundColor:'#d9e3f0'}}>{index + 1})</Text><Text style={styles.link} onPress={() => navigation.navigate("EventDetail", {
-                'event': e,
-                'username': {username}
-            })}>{e.event_name}</Text>
+                <Text style={{backgroundColor: '#d9e3f0'}}>{index + 1})</Text><Text style={styles.link}
+                                                                                    onPress={() => navigation.navigate("EventDetail", {
+                                                                                        'event': e,
+                                                                                        'username': {username}
+                                                                                    })}>{e.event_name}</Text>
             </View>
 
         )
     })
 
-    const getElement = ()=>{
-         if(loading === true){
-            return <Spinner />
-       }
-        else{
+    const getElement = () => {
+        if (loading === true) {
+            return <Spinner/>
+        } else {
             return (
-                  <>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
-            </View>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end'}}>{username}</Text>
-            </View>
-            <View style={{justifyContent: 'flex-start', alignItems: 'flex-start', margin: 20}}>
-                <Text style={{alignItems: 'flex-end'}}>{username.username}</Text>
-                {element}
-            </View>
-        </>
+                <>
+                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                        <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+                    </View>
+                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                        <Text style={{color: 'white', alignItems: 'flex-end'}}>{username}</Text>
+                    </View>
+                    <View style={{justifyContent: 'flex-start', alignItems: 'flex-start', margin: 20}}>
+                        <Text style={{alignItems: 'flex-end'}}>{username.username}</Text>
+                        {element}
+                    </View>
+                </>
             )
         }
     }

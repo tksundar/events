@@ -32,12 +32,12 @@ const RegistrationDetails = ({route, navigation}) => {
 
     return (
         <>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end', fontsize: 20, marginRight:10}}>Events App</Text>
-                </View>
-             <View style={{backgroundColor:'#2196F3', flexDirection:'row',justifyContent: 'flex-end'}}>
-                    <Text style={{color:'white',alignItems:'flex-end',marginRight:10}}>{registration.name}</Text>
-                </View>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end', fontsize: 20, marginRight: 10}}>Events App</Text>
+            </View>
+            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end', marginRight: 10}}>{registration.name}</Text>
+            </View>
             <View style={{justifyContent: 'flex-start', alignItems: 'center'}}>
                 <Text style={{fontSize: 15}}>Already Registered. Details given below</Text>
             </View>

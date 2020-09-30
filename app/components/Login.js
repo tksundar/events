@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, Button, Text, Stylesheet, TextInput, Switch} from 'react-native'
+import {Button, Switch, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util'
 import {URL_LOGIN} from './Constants'
 import Spinner from "./Spinner";
@@ -15,21 +15,27 @@ const Login = (props) => {
     const {navigation} = props
 
     const handleSubmit = async () => {
-        setLoading(true)
+
         console.log('HandleSubmit called with values ', username.username, password.password)
         const formData = new FormData();
         formData.append('username', username.username)
         formData.append('password', password.password)
+        setLoading(true)
         const response = await getRemoteData(URL_LOGIN, formData)
         setLoading(false)
-        console.log(response.status, response.data)
-        if (response.data.user === 'valid' && response.data.password === 'valid') {
-            navigation.navigate('Events', {'username': username.username})
-        } else if (response.data.user === 'valid' && response.data.password === 'invalid') {
-            setError("Invalid Password")
 
+        if (response.data !== undefined) {
+            if (response.data.user === 'valid' && response.data.password === 'valid') {
+                navigation.navigate('Events', {'username': username.username})
+            } else if (response.data.user === 'valid' && response.data.password === 'invalid') {
+                setError("Invalid Password")
+
+            } else if (response.data.user === 'invalid') {
+                setError('User not recognized.Please register')
+            }
         } else {
-            setError("User not recognized. Please register")
+            console.log("Unknown ====> ", response)
+            setError('Possible network issue. Please try later')
 
         }
     }
