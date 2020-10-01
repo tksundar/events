@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {getRemoteData} from './Util'
-import {Image, ScrollView, Text, View} from 'react-native'
+import {Image, ScrollView, Text, View,TouchableOpacity} from 'react-native'
 import {URL_DISPLAY_MEDIA, URL_PREFIX} from './Constants'
 import Spinner from "./Spinner";
+import {SafeAreaView} from "react-native-safe-area-context";
 
 const ShowMedia = ({route, navigation}) => {
 
@@ -30,10 +31,11 @@ const ShowMedia = ({route, navigation}) => {
     for (let i = 0; i < urls.length; i++) {
         let destination = URL_PREFIX + urls[i];
         console.log('---', destination)
-        let picture = <Image key={i}
+        let picture = <TouchableOpacity key={i}><Image
                              source={{uri: destination}}
                              style={{height: 200,width:200, resizeMode: 'contain', margin: 5}}
-        />
+                             onPress={()=>navigation.navigate('FullSizePhoto',{'destination':destination})}
+        /></TouchableOpacity>
 
         pictures.push(picture)
         console.log(picture)
@@ -54,9 +56,11 @@ const ShowMedia = ({route, navigation}) => {
                         <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
                             App</Text>
                     </View>
+                    <SafeAreaView style={{justifyContent:'center',alignItems:'center'}}>
                     <ScrollView>
                         {pictures}
                     </ScrollView>
+                    </SafeAreaView>
                 </>
             )
         }

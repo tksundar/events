@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Linking, StyleSheet, Text, View} from 'react-native'
+import {Button, Linking, StyleSheet, Text, View,TouchableOpacity,ScrollView} from 'react-native'
 import {getRemoteData} from './Util';
 import {URL_CHECK_USER, URL_EVENTS} from './Constants'
 import Spinner from "./Spinner";
+import {SafeAreaView} from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
     container: {
@@ -11,7 +12,9 @@ const styles = StyleSheet.create({
         flexWrap: 'nowrap',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        width: "95%"
+        width: "95%",
+        height:20,
+        margin:5
     },
     item: {
         width: '40%',
@@ -29,6 +32,9 @@ const styles = StyleSheet.create({
     },
     clrGrey: {
         backgroundColor: "#d9e3f0"
+    },
+     clrCyan: {
+        backgroundColor: "white"
     },
     rowStyle: {
         flexDirection: 'row',
@@ -102,18 +108,20 @@ export const EventDetail = ({route, navigation}) => {
 
     return (
         <>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+
+            <View style={{flex:0.05,backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end',fontSize:20,marginRight:5}}>Events App</Text>
             </View>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end'}}>{username.username}</Text>
+            <View style={{flex:0.05,backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <Text style={{color: 'white', alignItems: 'flex-end',marginRight:5}}>{username.username}</Text>
             </View>
-            <View style={{flex: 1, justifyContent: "space-around", alignItems: 'center', margin: "5%"}}>
+            <View style={{flex: 0.8, justifyContent: "space-around", alignItems: 'center', margin: "5%",backgroundColor: '#0a0a0a'}}>
+
                 <View style={[styles.container, styles.clrGrey]}>
                     <Text style={styles.item}>Event Name</Text>
                     <Text style={styles.item}>{event_name}</Text>
                 </View>
-                <View style={styles.container}>
+                <View style={[styles.container,styles.clrCyan]}>
                     <Text style={styles.item}>Event Venue</Text>
                     <Text style={styles.item}>{event_venue}</Text>
                 </View>
@@ -121,7 +129,7 @@ export const EventDetail = ({route, navigation}) => {
                     <Text style={styles.item}>Event Date</Text>
                     <Text style={styles.item}>{event_date}</Text>
                 </View>
-                <View style={styles.container}>
+                <View style={[styles.container,styles.clrCyan]}>
                     <Text style={styles.item}>Event time</Text>
                     <Text style={styles.item}>{event_time}</Text>
                 </View>
@@ -129,7 +137,7 @@ export const EventDetail = ({route, navigation}) => {
                     <Text style={styles.item}>Event Description</Text>
                     <Text style={styles.item}>{event_description}</Text>
                 </View>
-                <View style={styles.container}>
+                <View style={[styles.container,styles.clrCyan]}>
                     <Text style={styles.item}>Event Admin(s)</Text>
                     <Text style={styles.item}>{event_admin}</Text>
                 </View>
@@ -155,7 +163,9 @@ export const EventDetail = ({route, navigation}) => {
                         <Button title="Upload Media" onPress={() => navigation.navigate("UploadMedia", event)}/>
                     </View>
                 </View>
+
             </View>
+
         </>
     )
 
@@ -188,11 +198,14 @@ export const Events = ({route, navigation}) => {
         return (
             <View key={index} style={{flexDirection: 'row', alignItems: 'center',}}>
 
-                <Text style={{backgroundColor: '#d9e3f0'}}>{index + 1})</Text><Text style={styles.link}
-                                                                                    onPress={() => navigation.navigate("EventDetail", {
-                                                                                        'event': e,
-                                                                                        'username': {username}
-                                                                                    })}>{e.event_name}</Text>
+                <Text style={{color: 'green',fontWeight:'bold'}}>{index + 1})</Text>
+                <TouchableOpacity>
+                <Text style={styles.link}
+                      onPress={() => navigation.navigate("EventDetail", {
+                          'event': e,
+                          'username': {username}
+                      })}>{e.event_name}</Text>
+                    </TouchableOpacity>
             </View>
 
         )
@@ -200,12 +213,17 @@ export const Events = ({route, navigation}) => {
 
     const getElement = () => {
         if (loading === true) {
-            return <Spinner/>
+             return (
+
+                     <Spinner/>
+
+             )
         } else {
             return (
                 <>
+                    <View style={{flex:1 }}>
                     <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end'}}>Events App</Text>
+                        <Text style={{color: 'white', alignItems: 'flex-end',fontSize:20}}>Events App</Text>
                     </View>
                     <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
                         <Text style={{color: 'white', alignItems: 'flex-end'}}>{username}</Text>
@@ -214,6 +232,7 @@ export const Events = ({route, navigation}) => {
                         <Text style={{alignItems: 'flex-end'}}>{username.username}</Text>
                         {element}
                     </View>
+                        </View>
                 </>
             )
         }

@@ -11,6 +11,7 @@ import RegistrationDetails from './RegistrationDetails'
 import MenuComponent from './MenuComponent'
 import ShowMedia from './ShowMedia'
 import UploadMedia from "./UploadMedia";
+import FullSizePhoto from "./FullSIzePhoto"
 
 const App = () => {
     const Stack = createStackNavigator();
@@ -43,6 +44,9 @@ const App = () => {
                               options={{title: '   View  Media', headerTitleAlign: 'center'}}/>
                 <Stack.Screen name="UploadMedia" component={UploadMedia}
                               options={{title: '   Upload  Media', headerTitleAlign: 'center'}}/>
+                              <Stack.Screen name="FullSizePhoto" component={FullSizePhoto}
+                              options={{title: '   Full SIze', headerTitleAlign: 'center'}}/>
+
 
             </Stack.Navigator>
         </NavigationContainer>

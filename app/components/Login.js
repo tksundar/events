@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, Switch, Text, TextInput, View} from 'react-native'
+import {Button, Switch, Text, TextInput, View,TouchableOpacity} from 'react-native'
 import {getRemoteData} from './Util'
 import {URL_LOGIN} from './Constants'
 import Spinner from "./Spinner";
@@ -46,15 +46,16 @@ const Login = (props) => {
                 <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
                     <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events App</Text>
                 </View>
-                <View style={{flex: 0.9, marginLeft: 30, justifyContent: 'space-evenly', alignItems: 'center'}}>
+                <View style={{flex: 1,
+                    justifyContent: 'space-evenly', alignItems: 'center' , }}>
                     <View style={{alignItems: 'flex-start'}}>
-                        <Text>Username</Text>
-                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                        <Text style={{color:'white'}}>Username</Text>
+                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1,color:'white'}}
                                    placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
                     </View>
                     <View style={{alignItems: 'flex-start'}}>
-                        <Text>Password</Text>
-                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                        <Text style={{color:'white'}}>Password</Text>
+                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1, color:'white'}}
                                    placeholder='password' secureTextEntry={showPassword}
                                    onChangeText={(text) => setPassword({password: text})}/>
                         <View style={{flexDirection: 'row'}}>
@@ -62,15 +63,17 @@ const Login = (props) => {
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5,color:'white'}}>show password</Text>
                         </View>
                     </View>
                     <View style={{alignItems: 'flex-start'}}>
                         <Button title="Submit" onPress={handleSubmit}/>
                     </View>
                     <View style={{flex: 0.2, maginLeft: 30, alignItems: 'flex-start', flexDirection: 'row'}}>
-                        <Text style={{alignItems: 'flex-start', marginRight: 20}}>New User?</Text>
-                        <Text style={{color: 'blue'}} onPress={() => navigation.navigate("Register")}>Register</Text>
+                        <Text style={{alignItems: 'flex-start', marginRight: 20,color:'white'}}>New User?</Text>
+                        <TouchableOpacity>
+                            <Text style={{color: 'green'}} onPress={() => navigation.navigate("Register")}>Register</Text>
+                        </TouchableOpacity>
                     </View>
                     <View>
                         <Text style={{color: 'red', fontWeight: 'bold'}}> {error}</Text>

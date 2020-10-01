@@ -81,40 +81,49 @@ const NewUser = ({navigation}) => {
             height: 40,
             width: 200,
             borderColor: 'gray',
-            borderWidth: 1
+            borderWidth: 1,
+            color: 'white'
         },
+        label:{
+            color:'white',
+
+        }
     })
 
     return (
         <>
-            <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
+            <View style={{flex:0.1,backgroundColor: '#2196F3',flexDirection:'row',  justifyContent:'flex-end'}}>
                 <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events App</Text>
             </View>
-            <SafeAreaView style={{flex: 0.9, marginLeft: 30, justifyContent: 'space-evenly', alignItems: 'center'}}>
+             <SafeAreaView style={{flex: 1,
+                justifyContent: 'space-evenly',
+                alignItems: 'center'
+                }}>
+
                 <ScrollView>
 
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Username</Text>
-                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                    <View style={{alignItems: 'flex-start', margin: 10}}>
+                        <Text style={styles.label}>Username</Text>
+                        <TextInput style={styles.item}
                                    placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
                     </View>
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Email Address</Text>
+                        <Text style={styles.label}>Email Address</Text>
                         <TextInput style={styles.item} placeholder="Email Address"
                                    onChangeText={(text) => setEmail({email: text})}/>
                     </View>
 
 
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Mobile</Text>
+                        <Text style={styles.label}>Mobile</Text>
                         <TextInput style={styles.item} placeholder="Mobile"
                                    onChangeText={(text) => setMobile({mobile: text})}/>
                     </View>
 
 
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Password</Text>
-                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                        <Text style={styles.label}>Password</Text>
+                        <TextInput style={styles.item}
                                    placeholder='password' secureTextEntry={true}
                                    onChangeText={(text) => setPassword({password: text})}/>
                         <View style={{flexDirection: 'row'}}>
@@ -122,12 +131,12 @@ const NewUser = ({navigation}) => {
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5,color:'white'}}>show password</Text>
                         </View>
                     </View>
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Confirm Password</Text>
-                        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}}
+                        <Text style={styles.label}>Confirm Password</Text>
+                        <TextInput style={styles.item}
                                    placeholder='password' secureTextEntry={true}
                                    onChangeText={(text) => setConfirmPassword({confirmPassword: text})}/>
                         <View style={{flexDirection: 'row'}}>
@@ -135,7 +144,7 @@ const NewUser = ({navigation}) => {
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5,color:'white'}}>show password</Text>
                         </View>
                     </View>
 
@@ -146,7 +155,7 @@ const NewUser = ({navigation}) => {
 
                     <View style={styles.hflex}>
                         <View>
-                            <Text>{errorMessage}</Text>
+                            <Text style={{color:'red',fontWeight:'bold'}}>{errorMessage}</Text>
                         </View>
                     </View>
                 </ScrollView>

@@ -5,9 +5,9 @@ class Spinner extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Processing...</Text>
+                <Text style={{color:'green'}}>Processing...</Text>
                 <ActivityIndicator/>
-                <ActivityIndicator size="large" color="blue"/>
+                <ActivityIndicator size="large" color="green"/>
             </View>
         );
     }
@@ -16,7 +16,7 @@ class Spinner extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "flex-start"
+        justifyContent: "center"
     },
 
 });

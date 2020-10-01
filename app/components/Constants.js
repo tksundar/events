@@ -7,8 +7,8 @@
 // export const URL_PREFIX="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000";
 // export const URL_UPLOAD_MEDIA="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events/upload";
 
-export const URL_PREFIX="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000";
-//export const URL_PREFIX = "http://192.168.0.103:8000";
+//export const URL_PREFIX="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000";
+export const URL_PREFIX = "http://192.168.0.100:8000";
 export const URL_LOGIN = URL_PREFIX + "/events/login";
 export const URL_EVENTS = URL_PREFIX + "/events";
 export const URL_NEW_USER = URL_PREFIX + "/register";

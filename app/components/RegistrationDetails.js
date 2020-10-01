@@ -32,8 +32,9 @@ const RegistrationDetails = ({route, navigation}) => {
 
     return (
         <>
+            <View style={{backgroundColor:'#0a0a0a',flex:1}}>
             <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end', fontsize: 20, marginRight: 10}}>Events App</Text>
+                <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, marginRight: 10}}>Events App</Text>
             </View>
             <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
                 <Text style={{color: 'white', alignItems: 'flex-end', marginRight: 10}}>{registration.name}</Text>
@@ -42,9 +43,10 @@ const RegistrationDetails = ({route, navigation}) => {
                 <Text style={{fontSize: 15}}>Already Registered. Details given below</Text>
             </View>
 
-            <ScrollView style={{marginTop: 30}}>
+            <ScrollView style={{margin:20}}>
                 {rows}
             </ScrollView>
+                </View>
         </>
     )
 }
