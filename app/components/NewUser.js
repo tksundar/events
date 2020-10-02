@@ -84,21 +84,22 @@ const NewUser = ({navigation}) => {
             borderWidth: 1,
             color: 'white'
         },
-        label:{
-            color:'white',
+        label: {
+            color: 'white',
 
         }
     })
 
     return (
         <>
-            <View style={{flex:0.1,backgroundColor: '#2196F3',flexDirection:'row',  justifyContent:'flex-end'}}>
+            <View style={{flex: 0.1, backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
                 <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events App</Text>
             </View>
-             <SafeAreaView style={{flex: 1,
+            <SafeAreaView style={{
+                flex: 1,
                 justifyContent: 'space-evenly',
                 alignItems: 'center'
-                }}>
+            }}>
 
                 <ScrollView>
 
@@ -131,7 +132,7 @@ const NewUser = ({navigation}) => {
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5,color:'white'}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5, color: 'white'}}>show password</Text>
                         </View>
                     </View>
                     <View style={{alignItems: 'flex-start', margin: 5}}>
@@ -144,7 +145,7 @@ const NewUser = ({navigation}) => {
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5,color:'white'}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5, color: 'white'}}>show password</Text>
                         </View>
                     </View>
 
@@ -155,7 +156,7 @@ const NewUser = ({navigation}) => {
 
                     <View style={styles.hflex}>
                         <View>
-                            <Text style={{color:'red',fontWeight:'bold'}}>{errorMessage}</Text>
+                            <Text style={{color: 'red', fontWeight: 'bold'}}>{errorMessage}</Text>
                         </View>
                     </View>
                 </ScrollView>

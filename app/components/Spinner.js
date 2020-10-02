@@ -5,7 +5,7 @@ class Spinner extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={{color:'green'}}>Processing...</Text>
+                <Text style={{color: 'green'}}>Processing...</Text>
                 <ActivityIndicator/>
                 <ActivityIndicator size="large" color="green"/>
             </View>

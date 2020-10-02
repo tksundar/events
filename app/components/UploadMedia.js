@@ -5,6 +5,7 @@ import {Button, Text, View} from 'react-native'
 
 import {URL_UPLOAD_MEDIA} from './Constants'
 import Spinner from "./Spinner";
+import {ProgressBar} from '@react-native-community/progress-bar-android'
 
 
 export const UploadMedia = ({route, navigation}) => {
@@ -13,6 +14,7 @@ export const UploadMedia = ({route, navigation}) => {
     const {event_name} = route.params
     const [images, setImages] = useState([])
     const [uploading, setUploading] = useState(false)
+    const [progress, setProgress] = useState(0)
     const [error, setError] = useState('')
 
     const selectMedia = async () => {
@@ -34,6 +36,7 @@ export const UploadMedia = ({route, navigation}) => {
         }
     }
 
+
     const upload = async () => {
         const data: FormData = new FormData();
         images.forEach((image) => {
@@ -44,12 +47,21 @@ export const UploadMedia = ({route, navigation}) => {
             })
         })
 
+        const config = {
+            onUploadProgress: function (progressEvent) {
+                let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                setProgress(percentCompleted / 100)
+                console.log('completed percentage ', percentCompleted / 100)
+            },
+            headers: {"content-type": "multipart/form-data", "accept": "application/json"}
+
+        }
+
         data.append('event_name', event_name)
         console.log(data)
-        const headers = {"content-type": "multipart/form-data", "accept": "application/json"}
         try {
             setUploading(true)
-            const response = await axios.post(URL_UPLOAD_MEDIA, data, headers)
+            const response = await axios.post(URL_UPLOAD_MEDIA, data, config)
             setUploading(false)
             if (response.data !== undefined) {
                 if (response.status === 200) {
@@ -83,7 +95,14 @@ export const UploadMedia = ({route, navigation}) => {
                         <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
                             App</Text>
                     </View>
-                    <Spinner/>
+                    <View style={{flex: 0.5}}>
+                        <Spinner/>
+                        <ProgressBar
+                            styleAttr="Horizontal"
+                            indeterminate={false}
+                            progress={progress}
+                        />
+                    </View>
                 </>
             )
         } else {

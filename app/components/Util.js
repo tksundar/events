@@ -10,7 +10,7 @@ export const getRemoteData = async (url, data) => {
             return await axios.get(url);
         } else {
             console.log('Sending POST request')
-            return await axios.post(url, data,{timeout:60000})
+            return await axios.post(url, data, {timeout: 60000})
         }
     } catch (error) {
         console.log('error receiving response, ', error)
