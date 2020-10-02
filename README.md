@@ -10,11 +10,12 @@ Server allows the following actions and responds with JSON data
 2.  Login registered users
 3.  Register for listed events
 4.  View media related to events
-5.  Upload media related to events
+5.  Download media with progress indicator
+6.  Upload multiple media files with progress indicator
 
 **API Calls**
 
-Root URL: http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events
+Root URL: http://ec2-65-0-61-175.ap-south-1.compute.amazonaws.com:8000/events
 
 1.  New User: [Root URL]/register
 2.  Login   : [Root URL]/login
