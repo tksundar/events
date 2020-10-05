@@ -1,17 +1,19 @@
 import React, {useState} from 'react'
 import DocumentPicker from 'react-native-document-picker';
 import axios from 'axios'
-import {Button, Text, View} from 'react-native'
+import {Text, View,TouchableOpacity} from 'react-native'
 
 import {URL_UPLOAD_MEDIA} from './Constants'
 import Spinner from "./Spinner";
 import {ProgressBar} from '@react-native-community/progress-bar-android'
+import styles from "../styles/Styles";
 
 
 export const UploadMedia = ({route, navigation}) => {
 
 
-    const {event_name} = route.params
+    const {event,username} = route.params
+    console.log('upload media:',event,username)
     const [images, setImages] = useState([])
     const [uploading, setUploading] = useState(false)
     const [progress, setProgress] = useState(0)
@@ -57,7 +59,7 @@ export const UploadMedia = ({route, navigation}) => {
 
         }
 
-        data.append('event_name', event_name)
+        data.append('event_name', event.event_name)
         console.log(data)
         try {
             setUploading(true)
@@ -91,11 +93,11 @@ export const UploadMedia = ({route, navigation}) => {
         if (uploading) {
             return (
                 <>
-                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
-                            App</Text>
-                    </View>
-                    <View style={{flex: 0.5}}>
+                    <View style={{flex: 0.04, backgroundColor: 'rgb(20,20,20)', flexDirection: 'row',flexGrow:0.04}}>
+                <Text style={{color: 'white', textAlign: 'left',width:'40%'}}>{event.event_name}</Text>
+                <Text style={{color: 'white', textAlign: 'right',width : '56%'}}>{username}</Text>
+            </View>
+                    <View style={{flex: 0.8}}>
                         <Spinner/>
                         <ProgressBar
                             styleAttr="Horizontal"
@@ -108,19 +110,23 @@ export const UploadMedia = ({route, navigation}) => {
         } else {
             return (
                 <>
-                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
-                            App</Text>
-                    </View>
+                   <View style={{flex: 0.04, backgroundColor: '#000', flexDirection: 'row',flexGrow:0.04}}>
+                <Text style={{color: 'white', textAlign: 'left',width:'40%'}}>{event.event_name}</Text>
+                <Text style={{color: 'white', textAlign: 'right',width : '60%'}}>{username}</Text>
+            </View>
                     <View style={{justifyContent: 'center', alignItems: 'center', flex: 0.5}}>
                         <View style={{width: 200, margin: 25}}>
-                            <Button title={'Select Images'} onPress={selectMedia}/>
+                            <TouchableOpacity style={styles.appButtonContainer} onPress={selectMedia}>
+                                <Text style={styles.appButtonText}>Select Images</Text>
+                            </TouchableOpacity>
                         </View>
 
                         <View style={{width: 200, margin: 25}}>
                             <Text style={{margin: 10}}>You selected the following:</Text>
                             {imageMeta}
-                            <Button title={'Upload Images'} onPress={upload}/>
+                             <TouchableOpacity style={styles.appButtonContainer} onPress={upload}>
+                                <Text style={styles.appButtonText}>Upload Images</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>

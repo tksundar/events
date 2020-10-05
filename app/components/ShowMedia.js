@@ -8,11 +8,11 @@ import Download from "./Download";
 
 const ShowMedia = ({route, navigation}) => {
 
-    const event = route.params
+    const {event, username} = route.params
     const {event_name} = event
     const [urls, setUrls] = useState([])
     const [loading, setLoading] = useState(true)
-    console.log(event)
+    console.log("View media:",event,event_name)
 
     const getUrls = async () => {
         let formData = new FormData();
@@ -35,11 +35,13 @@ const ShowMedia = ({route, navigation}) => {
         let picture = <View key={i} style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image source={{uri: destination}}
                    style={{
+                       borderColor: 'blue',
+                       borderWidth: 1,
                        height: 200,
                        width: 200,
                        resizeMode: 'contain',
-                       marginRight: 5,
-                       marginTop: 5,
+                       margin: 5,
+
                    }}
             />
             <Download uri={destination}/>
@@ -55,19 +57,15 @@ const ShowMedia = ({route, navigation}) => {
         } else {
             return (
                 <>
-                    <View style={{
-                        backgroundColor: '#2196F3',
-                        flexDirection: 'row',
-                        justifyContent: 'flex-end',
-                        margin: 10
-                    }}>
-                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
-                            App</Text>
+                    <View style={{backgroundColor: 'rgb(20,20,20)', flexDirection: 'row', flexGrow: 0.04}}>
+                        <Text style={{color: 'white', textAlign: 'left', width: '40%'}}>{event.event_name}</Text>
+                        <Text style={{color: 'white', textAlign: 'right', width: '56%'}}>{username}</Text>
                     </View>
                     <SafeAreaView style={{
                         justifyContent: 'center',
                         alignItems: 'center',
-                        backgroundColor: '#0a0a0a',
+                        backgroundColor: '#0a0a0a'
+
                     }}>
                         <ScrollView>
                             {pictures}

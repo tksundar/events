@@ -1,39 +1,108 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Button, Divider, Menu, Provider} from 'react-native-paper';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+    Platform,
+} from "react-native";
 
-const MenuComponent = () => {
-    const [visible, setVisible] = React.useState(false);
 
-    const openMenu = () => setVisible(true);
+const MenuComponent = ({navigation}) => {
 
-    const closeMenu = () => setVisible(false);
-
-    console.log('MenuComponent called')
 
     return (
-        <Provider>
-            <View
-                style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    marginBottom: 50
-                }}>
-                <Menu
-                    visible={visible}
-                    onDismiss={closeMenu}
-                    anchor={<Button onPress={openMenu}>Media</Button>}>
-                    <Menu.Item onPress={() => {
-                    }} title="View"/>
-                    <Menu.Item onPress={() => {
-                    }} title="Upload"/>
-                    <Divider/>
-                    <Menu.Item onPress={() => {
-                    }} title="Dummy"/>
-                </Menu>
+        <>
+            <View style={styles.container}>
+                <View style={styles.containertopRow}>
+                    <Image
+                        style={styles.imageTopRow}
+                        source={{
+                            uri:
+                                'https://cdn.pixabay.com/photo/2014/04/05/12/20/man-316917_960_720.jpg',
+                        }}
+                    />
+                </View>
+                <View style={styles.containerBottom}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ChangePassword')}
+                        style={styles.containerBottomItem}
+                    >
+                        <View style={styles.button}>
+                            <Text style={styles.txtBottom}>Change Password</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ForgotPassword')}
+                        style={styles.containerBottomItem}
+                    >
+                        <View style={styles.button}>
+                            <Text style={styles.txtBottom}>Forgot Password</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </Provider>
+        </>
     );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#17BED0'
+  },
+  containertopRow: {
+    marginTop: 10,
+    marginLeft: 10,
+    justifyContent: "center",
+    alignItems: 'center'
+  },
+  txtBottom: {
+    marginLeft: 10,
+    color: '#E6FAFF',
+    fontSize: 15,
+    fontWeight: '100'
+  },
+  imageTopRow: {
+    height: 80,
+    width: 80,
+    ...Platform.select({
+      ios: {
+        borderRadius: 80 / 2
+      },
+      android: {
+        borderRadius: 80
+      }
+    })
+  },
+  icon: {
+    height: 25,
+    width: 25,
+    marginRight: 10
+  },
+  button: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  },
+
+  containertopRowText: {
+    flexDirection: 'column',
+    marginLeft: 5
+  },
+
+  containerBottom: {
+    backgroundColor: '#17BED0'
+  },
+  containerBottomItem: {
+    padding: 10,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderBottomColor: '#E6FAFF',
+    borderBottomWidth: 0.5
+  }
+});
 
 export default MenuComponent;

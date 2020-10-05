@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
-import {Button, ScrollView, StyleSheet, Switch, Text, TextInput, View} from 'react-native'
+import {Button, ScrollView,  StyleSheet, TextInput,Switch, Text, View, TouchableOpacity} from 'react-native'
 import {getRemoteData} from './Util'
 import {URL_NEW_USER} from "./Constants"
 import {SafeAreaView} from "react-native-safe-area-context";
+import styles from "../styles/Styles";
 
 const NewUser = ({navigation}) => {
 
@@ -44,114 +45,76 @@ const NewUser = ({navigation}) => {
         formData.append('mobile', mobile.mobile)
         const response = await getRemoteData(URL_NEW_USER, formData)
         console.log(response.status, response.data)
-        if (response.data.name === username.username) {
-            navigation.navigate('Events')
-        } else if (response.data.status === 'existing') {
-            setErrorMessage('User exists. Please login. If you forgot your password, please contact your admin')
+        if (response.status === 200) {
+            if (response.data.name === username.username) {
+                navigation.navigate('Events')
+            } else if (response.data.status === 'existing') {
+                setErrorMessage('User exists. Please login. If you forgot your password,' +
+                    'use the Forgot Password option to reset your password')
+            } else {
+                setErrorMessage('If you are seeing this, this is an application bug. Contact administrator')
+            }
         } else {
-            setErrorMessage('If you are seeing this, this is an application bug. Contact adminsitartor')
+            setErrorMessage("Server responded with error. Please contact administrator")
         }
 
 
     }
 
-    const styles = StyleSheet.create({
-        hflex: {
-            flex: 1,
-            flexDirection: 'row',
-            margin: 5,
-            alignItems: "flex-start",
-            justifyContent: "space-evenly"
-        },
-
-        vFlex: {
-            flexDirection: 'column',
-
-            justifyContent: 'space-evenly'
-        },
-
-        banner: {
-            flex: 0.2,
-            justifyContent: 'center',
-            backgroundColor: 'grey',
-            alignItems: 'flex-end',
-            margin: 10,
-        },
-        item: {
-            height: 40,
-            width: 200,
-            borderColor: 'gray',
-            borderWidth: 1,
-            color: 'white'
-        },
-        label: {
-            color: 'white',
-
-        }
-    })
 
     return (
         <>
-            <View style={{flex: 0.1, backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events App</Text>
-            </View>
-            <SafeAreaView style={{
-                flex: 1,
-                justifyContent: 'space-evenly',
-                alignItems: 'center'
-            }}>
+            <ScrollView>
+                <SafeAreaView style={{
+                    flex: 1,
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center'
+                }}>
 
-                <ScrollView>
-
-                    <View style={{alignItems: 'flex-start', margin: 10}}>
-                        <Text style={styles.label}>Username</Text>
+                    <View style={{alignItems: 'flex-start', margin: 5}}>
+                        <Text>Username</Text>
                         <TextInput style={styles.item}
                                    placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
                     </View>
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text style={styles.label}>Email Address</Text>
-                        <TextInput style={styles.item} placeholder="Email Address"
+                        <TextInput style={styles.item}   placeholder="Email Address"
                                    onChangeText={(text) => setEmail({email: text})}/>
                     </View>
 
 
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text style={styles.label}>Mobile</Text>
+
                         <TextInput style={styles.item} placeholder="Mobile"
                                    onChangeText={(text) => setMobile({mobile: text})}/>
                     </View>
 
 
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text style={styles.label}>Password</Text>
+
                         <TextInput style={styles.item}
-                                   placeholder='password' secureTextEntry={true}
+                                   placeholder='password' secureTextEntry={showPassword}
                                    onChangeText={(text) => setPassword({password: text})}/>
-                        <View style={{flexDirection: 'row'}}>
-                            <Switch
-                                trackColor={{false: "#767577", true: "#81b0ff"}}
-                                thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
-                                value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5, color: 'white'}}>show password</Text>
-                        </View>
+
                     </View>
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text style={styles.label}>Confirm Password</Text>
+
                         <TextInput style={styles.item}
-                                   placeholder='password' secureTextEntry={true}
+                                   placeholder='confirm password' secureTextEntry={showPassword}
                                    onChangeText={(text) => setConfirmPassword({confirmPassword: text})}/>
                         <View style={{flexDirection: 'row'}}>
                             <Switch
                                 trackColor={{false: "#767577", true: "#81b0ff"}}
                                 thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
                                 value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5, color: 'white'}}>show password</Text>
+                            <Text style={{fontSize: 10, marginTop: 5}}>show password</Text>
                         </View>
                     </View>
 
 
-                    <View style={{alignItems: 'flex-start'}}>
-                        <Button title="Submit" onPress={handleSubmit}/>
+                    <View style={{alignItems: 'center'}}>
+                        <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
+                            <Text style={styles.appButtonText}>Register</Text>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={styles.hflex}>
@@ -159,8 +122,9 @@ const NewUser = ({navigation}) => {
                             <Text style={{color: 'red', fontWeight: 'bold'}}>{errorMessage}</Text>
                         </View>
                     </View>
-                </ScrollView>
-            </SafeAreaView>
+                </SafeAreaView>
+            </ScrollView>
+
         </>
     )
 }

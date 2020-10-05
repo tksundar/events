@@ -3,6 +3,8 @@ import {Button, Switch, Text, TextInput, TouchableOpacity, View} from 'react-nat
 import {getRemoteData} from './Util'
 import {URL_LOGIN} from './Constants'
 import Spinner from "./Spinner";
+import HeaderNavigationBar from "./HeaderNavigationBar";
+import styles from "../styles/Styles";
 
 
 const Login = (props) => {
@@ -43,9 +45,6 @@ const Login = (props) => {
     const getLoginForm = () => {
         return (
             <>
-                <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
-                    <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events App</Text>
-                </View>
                 <View style={{
                     flex: 1,
                     justifyContent: 'space-evenly', alignItems: 'center',
@@ -74,13 +73,14 @@ const Login = (props) => {
                         </View>
                     </View>
                     <View style={{alignItems: 'flex-start'}}>
-                        <Button title="Submit" onPress={handleSubmit}/>
+                        <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
+                            <Text style={styles.appButtonText}>Login</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex: 0.2, maginLeft: 30, alignItems: 'flex-start', flexDirection: 'row'}}>
                         <Text style={{alignItems: 'flex-start', marginRight: 20, color: 'black'}}>New User?</Text>
-                        <TouchableOpacity>
-                            <Text style={{color: 'blue'}}
-                                  onPress={() => navigation.navigate("Register")}>Register</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                            <Text style={{color: 'blue'}}>Register</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
@@ -96,10 +96,10 @@ const Login = (props) => {
         if (loading) {
             return (
                 <>
-                    <View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>
-                        <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events
-                            App</Text>
-                    </View>
+                    {/*<View style={{backgroundColor: '#2196F3', flexDirection: 'row', justifyContent: 'flex-end',}}>*/}
+                    {/*    <Text style={{color: 'white', alignItems: 'flex-end', fontSize: 20, margin: 10}}>Events*/}
+                    {/*        App</Text>*/}
+                    {/*</View>*/}
                     <Spinner/>
                 </>
             )

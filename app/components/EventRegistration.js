@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import {Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
+import {TouchableOpacity, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
 import {getRemoteData} from './Util';
 import {URL_EVENT_REGISTRATION} from "./Constants"
+import {SafeAreaView} from "react-native-safe-area-context";
 
 
 const EventRegistration = ({route, navigation}) => {
@@ -69,86 +70,90 @@ const EventRegistration = ({route, navigation}) => {
                 backgroundColor: '#d9e3f0',
                 marginHorizontal: 20,
             }}>
-                <Text>{error.error}</Text>
+                <SafeAreaView>
+                    <Text>{error.error}</Text>
 
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Event Name</Text>
-                        <TextInput style={styles.item}
-                                   placeholder={event.event_name}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Event Name</Text>
+                            <TextInput style={styles.item}
+                                       placeholder={event.event_name}/>
+                        </View>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Name</Text>
+                            <TextInput style={styles.item} defaultValue={username.username}
+                                       onChangeText={(text) => setName({name: text})}/>
+                        </View>
                     </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Name</Text>
-                        <TextInput style={styles.item} defaultValue={username.username}
-                                   onChangeText={(text) => setName({name: text})}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Payment</Text>
+                            <TextInput style={styles.item}
+                                       placeholder="Payment Amount"
+                                       onChangeText={(text) => setPayment({payment: text})}/>
+                        </View>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Payment Ref</Text>
+                            <TextInput style={styles.item} placeholder="Payment Ref"
+                                       onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Payment</Text>
-                        <TextInput style={styles.item}
-                                   placeholder="Payment Amount"
-                                   onChangeText={(text) => setPayment({payment: text})}/>
-                    </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Payment Ref</Text>
-                        <TextInput style={styles.item} placeholder="Payment Ref"
-                                   onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
-                    </View>
-                </View>
 
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Num of guests</Text>
-                        <TextInput style={styles.item}
-                                   placeholder="1" onChangeText={(text) => setNumGuests({numGuests: text})}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Num of guests</Text>
+                            <TextInput style={styles.item}
+                                       placeholder="1" onChangeText={(text) => setNumGuests({numGuests: text})}/>
+                        </View>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Num of Days</Text>
+                            <TextInput style={styles.item}
+                                       placeholder="1" onChangeText={(text) => setNumDays({numDays: text})}/>
+                        </View>
                     </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Num of Days</Text>
-                        <TextInput style={styles.item}
-                                   placeholder="1" onChangeText={(text) => setNumDays({numDays: text})}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Arrival Date</Text>
+                            <TextInput style={styles.item}
+                                       placeholder={event.event_date}
+                                       onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
+                        </View>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Arrival Time</Text>
+                            <TextInput style={styles.item}
+                                       placeholder={event.event_time}
+                                       onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Arrival Date</Text>
-                        <TextInput style={styles.item}
-                                   placeholder={event.event_date}
-                                   onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Departure Date</Text>
+                            <TextInput style={styles.item}
+                                       placeholder='' onChangeText={(text) => setDepartureDate({departureDate: text})}/>
+                        </View>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Mode Of Travel</Text>
+                            <TextInput style={styles.item}
+                                       placeholder='Mode of Travel'
+                                       onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
+                        </View>
                     </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Arrival Time</Text>
-                        <TextInput style={styles.item}
-                                   placeholder={event.event_time}
-                                   onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
-                    </View>
-                </View>
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Departure Date</Text>
-                        <TextInput style={styles.item}
-                                   placeholder='' onChangeText={(text) => setDepartureDate({departureDate: text})}/>
-                    </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Mode Of Travel</Text>
-                        <TextInput style={styles.item}
-                                   placeholder='Mode of Travel'
-                                   onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
-                    </View>
-                </View>
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Pickup Required</Text>
-                        <TextInput style={styles.item}
-                                   placeholder='No' onChangeText={(text) => setPickup({pickup: text})}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start', margin: 5}}>
+                            <Text>Pickup Required</Text>
+                            <TextInput style={styles.item}
+                                       placeholder='No' onChangeText={(text) => setPickup({pickup: text})}/>
 
+                        </View>
                     </View>
-                </View>
-                <View style={styles.hflex}>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <Button title="Submit" onPress={handleSubmit}/>
+                    <View style={styles.hflex}>
+                        <View style={{alignItems: 'flex-start'}}>
+                            <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
+                                <Text styles={styles.appButtonText}>Register</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
+                </SafeAreaView>
             </ScrollView>
 
 

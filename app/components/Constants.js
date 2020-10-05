@@ -7,12 +7,15 @@
 // export const URL_PREFIX="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000";
 // export const URL_UPLOAD_MEDIA="http://ec2-13-232-233-180.ap-south-1.compute.amazonaws.com:8000/events/upload";
 
-export const URL_PREFIX = "http://ec2-65-0-61-175.ap-south-1.compute.amazonaws.com:8000";
-//export const URL_PREFIX = "http://192.168.0.100:8000";
+//export const URL_PREFIX = "http://ec2-65-0-61-175.ap-south-1.compute.amazonaws.com:8000";
+export const URL_PREFIX = "http://192.168.0.100:8000";
 export const URL_LOGIN = URL_PREFIX + "/events/login";
 export const URL_EVENTS = URL_PREFIX + "/events";
-export const URL_NEW_USER = URL_PREFIX + "/register";
+export const URL_NEW_USER = URL_PREFIX + "/events/register";
 export const URL_EVENT_REGISTRATION = URL_PREFIX + "/events/create";
 export const URL_CHECK_USER = URL_PREFIX + "/events/check";
 export const URL_DISPLAY_MEDIA = URL_PREFIX + "/events/display";
-export const URL_UPLOAD_MEDIA = URL_PREFIX + "/events/upload";
+export const URL_CHANGE_PASSWORD = URL_PREFIX + "/events/changePwd";
+export const URL_FORGOT_PASSWORD = URL_PREFIX + "/events/forgotPwd";
+export const URL_VIEW_PROGRAM = URL_PREFIX + "/events/viewProgram";
+export const URL_ADMIN=URL_PREFIX+"/admin";

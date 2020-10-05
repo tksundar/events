@@ -1,53 +1,104 @@
 import 'react-native-gesture-handler';
 import React from 'react'
+import {View,Text,TouchableOpacity} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Login from './Login'
 import {EventDetail, Events} from './Events'
 import EventRegistration from './EventRegistration';
 import NewUser from './NewUser';
 import SuccessPage from './SuccessPage';
 import RegistrationDetails from './RegistrationDetails'
-import MenuComponent from './MenuComponent'
+
 import ShowMedia from './ShowMedia'
 import UploadMedia from "./UploadMedia";
+import ChangePassword from "./ChangePassword";
+import ForgotPassword from "./ForgotPassword";
+import styles from "../styles/Styles";
+
+import HeaderNavigationBar from "./HeaderNavigationBar";
+import ShowProgram from "./ShowProgram";
 
 
-const App = () => {
+const App = ()=>{
+
+    const Drawer = createDrawerNavigator()
+    return(
+        <NavigationContainer>
+        <Drawer.Navigator initialRoute={"Home"}
+         drawerStyle={{
+             width: 200,
+             height:300
+  }}>
+            <Drawer.Screen name="Home" component={Home}/>
+            <Drawer.Screen name="Change Password" component={ChangePassword}/>
+            <Drawer.Screen name="Forgot Password" component={ForgotPassword}/>
+        </Drawer.Navigator>
+        </NavigationContainer>
+    )
+
+}
+
+function Title() {
+  return (
+      <Text style={{fontSize:20,fontWeight:'bold',textAlign:'right', color:'#fff'}}>Events</Text>
+  );
+}
+
+function HeaderLeft(props){
+    return(
+        <HeaderNavigationBar {...props} />
+    )
+}
+
+
+
+
+const Home = ({navigation})=>{
     const Stack = createStackNavigator();
 
-    const media = () => {
-        return (
-            <MenuComponent/>
-        )
-    }
-
-
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="Login" default>
+            <Stack.Navigator
+            screenOptions={{
+                headerStyle: {
+                  backgroundColor: 'rgb(20,20,20)',
+                             },
+
+                headerTintColor: '#ffffff',
+                headerTitleStyle: {
+                fontWeight: 'bold',
+                 },
+            }}
+            >
                 <Stack.Screen name="Login" component={Login}
-                              options={{title: 'Login', headerTitleAlign: 'center'}}/>
+                              options={{
+                                  headerTitle: props => <Title {...props} />,
+                                  headerLeft: props => <HeaderLeft {...navigation}/>
+                              }}/>
+
                 <Stack.Screen name="Register" component={NewUser}
-                              options={{title: 'New User Registration', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="Events" component={Events}
-                              options={{title: 'Events', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="EventDetail" component={EventDetail}
-                              options={{title: '  Event Details', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="EventRegistration" component={EventRegistration}
-                              options={{title: '   Event Registration', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="SuccessPage" component={SuccessPage}
-                              options={{title: '   Action Status', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="RegistrationDetails" component={RegistrationDetails}
-                              options={{title: '   Registration Details', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="ShowMedia" component={ShowMedia}
-                              options={{title: '   View  Media', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="UploadMedia" component={UploadMedia}
-                              options={{title: '   Upload  Media', headerTitleAlign: 'center'}}/>
+                              options={{headerTitle: props => <Title {...props} />}}/>
+                <Stack.Screen name="ViewProgram" component={ShowProgram}
+                              options={{headerTitle: props => <Title {...props} />}}/>
 
 
             </Stack.Navigator>
-        </NavigationContainer>
+
 
 
     )
