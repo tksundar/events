@@ -22,7 +22,7 @@ class HeaderNavigationBar extends React.Component {
                                 }}>
                 <Image
                     style={{width: 32, height: 32}}
-                    source={require('../images/drawer_icon.png')}
+                    source={require('../images/drawer.png')}
                 />
             </TouchableHighlight>
         </View>);

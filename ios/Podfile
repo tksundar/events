@@ -8,6 +8,10 @@ target 'ReactProject' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
+
   target 'ReactProjectTests' do
     inherit! :complete
     # Pods for testing

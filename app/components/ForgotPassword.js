@@ -1,5 +1,6 @@
 import React , {useState} from 'react'
-import {View, Button, TextInput, Text, TouchableOpacity} from "react-native";
+import {View,  Text, TouchableOpacity} from "react-native";
+import {TextInput} from "react-native-paper";
 import {URL_FORGOT_PASSWORD} from "./Constants";
 import {getRemoteData} from "./Util";
 import styles from "../styles/Styles";
@@ -52,14 +53,14 @@ const ForgotPassword = (props) =>{
                         <Text style={{color:'white',fontSize:20,marginLeft:'70%'}}>Events</Text>
                              </View>
                 </View>
-                <View style={{justifyContent:'flex-start',flexDirection:'row'}}>
+                <View style={{justifyContent:'center',alignItems:'center'}}>
                     <View >
-                        <Text style={{marginLeft:'45%',fontSize: 15, fontWeight:'bold', alignItems:'center'}}>Forgot Password</Text>
+                        <Text style={{margin:20,fontSize: 15, fontWeight:'bold', textAlign:'center'}}>Forgot Password</Text>
                     </View>
 
                 </View>
             <View style={{justifyContent:'center',alignItems: 'center',marginTop:50}}>
-                <TextInput style={styles.item} placeholder="Email Address"
+                <TextInput style={styles.item1} label="Email Address"
                            onChangeText={(text) => setEmail({email: text})}/>
             </View>
             <View style={{justifyContent:'center',alignItems: 'center',marginTop:20}}>

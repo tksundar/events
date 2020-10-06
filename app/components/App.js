@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import {View,Text,TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Linking} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -15,15 +15,20 @@ import ShowMedia from './ShowMedia'
 import UploadMedia from "./UploadMedia";
 import ChangePassword from "./ChangePassword";
 import ForgotPassword from "./ForgotPassword";
-import styles from "../styles/Styles";
+
 
 import HeaderNavigationBar from "./HeaderNavigationBar";
 import ShowProgram from "./ShowProgram";
+import AdminViews from "./AdminView";
+import ViewRegistrations from "./ViewRegistrations";
+import StackNavigator from "@react-navigation/stack/src/navigators/createStackNavigator";
+
 
 
 const App = ()=>{
 
     const Drawer = createDrawerNavigator()
+
     return(
         <NavigationContainer>
         <Drawer.Navigator initialRoute={"Home"}
@@ -34,6 +39,9 @@ const App = ()=>{
             <Drawer.Screen name="Home" component={Home}/>
             <Drawer.Screen name="Change Password" component={ChangePassword}/>
             <Drawer.Screen name="Forgot Password" component={ForgotPassword}/>
+            <Drawer.Screen name="Admin" component={AdminViews}/>
+
+
         </Drawer.Navigator>
         </NavigationContainer>
     )
@@ -59,7 +67,7 @@ const Home = ({navigation})=>{
     const Stack = createStackNavigator();
 
     return (
-            <Stack.Navigator
+            <Stack.Navigator initialRouteName="Login"
             screenOptions={{
                 headerStyle: {
                   backgroundColor: 'rgb(20,20,20)',
@@ -78,7 +86,8 @@ const Home = ({navigation})=>{
                               }}/>
 
                 <Stack.Screen name="Register" component={NewUser}
-                              options={{headerTitle: props => <Title {...props} />}}/>
+                              options={{
+                                  headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="Events" component={Events}
                               options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="EventDetail" component={EventDetail}
@@ -95,7 +104,11 @@ const Home = ({navigation})=>{
                               options={{headerTitle: props => <Title {...props} />}}/>
                 <Stack.Screen name="ViewProgram" component={ShowProgram}
                               options={{headerTitle: props => <Title {...props} />}}/>
-
+                <Stack.Screen Screen name={"ViewRegistrations"} component={ViewRegistrations}
+                              options={{
+                                  headerTitle: props => <Title {...props} />,
+                              }}
+                />
 
             </Stack.Navigator>
 
@@ -103,5 +116,6 @@ const Home = ({navigation})=>{
 
     )
 }
+
 
 export default App

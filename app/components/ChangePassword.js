@@ -3,7 +3,9 @@
  */
 
 import React, {Component} from 'react'
-import {View, TextInput, Text, Switch, Button, ScrollView,TouchableOpacity} from "react-native";
+import {View,  Text, Switch, Button, ScrollView,TouchableOpacity} from "react-native";
+import {TextInput} from "react-native-paper";
+import PasswordInput from "./PasswordInput";
 import {URL_CHANGE_PASSWORD} from './Constants'
 import {getRemoteData} from "./Util";
 import HeaderNavigationBar from "./HeaderNavigationBar";
@@ -85,55 +87,47 @@ class ChangePassword extends Component {
                   <>
 
 
-                <View style={styles.topBanner}>
-                    <View style={{alignItems:'flex-start',width:'10%'}}><HeaderNavigationBar {...this.props.navigation}/></View>
-                    <View style={{alignItems: 'flex-end'}}>
-                        <Text style={{color:'white',fontSize:20,marginLeft:'70%'}}>Events</Text>
-                             </View>
-                </View>
-                <View style={{justifyContent:'flex-start',flexDirection:'row'}}>
-                    <View >
-                        <Text style={{marginLeft:'40%',fontSize: 15, fontWeight:'bold', alignItems:'center'}}>Change Password</Text>
-                    </View>
-                    <View style={{marginLeft:'10%'}}>
-                     <Switch
-                            trackColor={{false: "#767577", true: "#81b0ff"}}
-                            thumbColor={this.state.showPassword ? "#f5dd4b" : "#f4f3f4"}
-                            value={!this.state.showPassword}
-                            onValueChange={() => this.setState({showPassword: !this.state.showPassword})}/>
-                            <Text style={{fontSize: 10, marginTop: 5, color: 'black'}}>show password</Text>
-                        </View>
+                      <View style={styles.topBanner}>
+                          <View style={{
+                              alignItems: 'flex-start',
+                              width: '10%'
+                          }}><HeaderNavigationBar {...this.props.navigation}/></View>
+                          <View style={{alignItems: 'flex-end'}}>
+                              <Text style={{color: 'white', fontSize: 20, marginLeft: '70%'}}>Events</Text>
+                          </View>
+                      </View>
+                      <View style={{justifyContent: 'center',alignItems:'center'}}>
+                          <Text style={{marginTop: 40, fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>Change
+                              Password</Text>
+                      </View>
 
-
-                </View>
                 <SafeAreaView style={{justifyContent:'space-around'}}>
                 <ScrollView>
                 <View style={{
                     flex: 1,
                     justifyContent: 'space-evenly', alignItems: 'center',
                 }}>
-                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <TextInput style={styles.item} placeholder="Email Address"
+                        <TextInput style={styles.item1} label="Email Address"
                                    onChangeText={(text) => this.setState({email: text})}/>
-                    </View>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <TextInput style={styles.item}
-                                   placeholder='Old password' secureTextEntry={this.state.showPassword}
+
+
+                        <PasswordInput style={styles.item1}
+                                   label='Old password'
                                    onChangeText={(text) => this.setState({oldPassword: text})}/>
 
-                    </View>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <TextInput style={styles.item}
-                                   placeholder='New password' secureTextEntry={this.state.showPassword}
+
+
+                        <PasswordInput style={styles.item1}
+                                   label='New password'
                                    onChangeText={(text) => this.setState({newPassword: text})}/>
 
-                    </View>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <TextInput style={styles.item}
-                                   placeholder='confirm new password' secureTextEntry={this.state.showPassword}
+
+
+                        <PasswordInput style={styles.item1}
+                                   label='Confirm new password'
                                    onChangeText={(text) => this.setState({confirmPassword: text})}/>
 
-                    </View>
+
                     <View style={{alignItems: 'flex-start'}}>
                         <TouchableOpacity style={styles.appButtonContainer} onPress={this.handleSubmit}>
                             <Text style={styles.appButtonText}>Submit</Text>

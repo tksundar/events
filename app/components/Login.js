@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
-import {Button, Switch, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import {Button, Switch, Text, TouchableOpacity, View} from 'react-native'
+import {TextInput} from "react-native-paper";
 import {getRemoteData} from './Util'
 import {URL_LOGIN} from './Constants'
 import Spinner from "./Spinner";
 import HeaderNavigationBar from "./HeaderNavigationBar";
 import styles from "../styles/Styles";
+import PasswordInput from "./PasswordInput";
 
 
 const Login = (props) => {
@@ -49,29 +51,14 @@ const Login = (props) => {
                     flex: 1,
                     justifyContent: 'space-evenly', alignItems: 'center',
                 }}>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <Text>Username</Text>
-                        <TextInput style={{
-                            height: 40, width: 200, borderColor: 'gray',
-                            borderWidth: 1
-                        }}
-                                   placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
-                    </View>
-                    <View style={{alignItems: 'flex-start'}}>
-                        <Text>Password</Text>
-                        <TextInput style={{
-                            height: 40, width: 200, borderColor: 'gray', borderWidth: 1,
-                        }}
-                                   placeholder='password' secureTextEntry={showPassword}
-                                   onChangeText={(text) => setPassword({password: text})}/>
-                        <View style={{flexDirection: 'row'}}>
-                            <Switch
-                                trackColor={{false: "#767577", true: "#81b0ff"}}
-                                thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
-                                value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5, color: 'black'}}>show password</Text>
-                        </View>
-                    </View>
+                    <Text style={{margin:10,fontWeight:'bold', fontSize:20}}>Login</Text>
+                     <View style={{marginTop:40 , alignItems:'center'}}>
+                         <TextInput style={styles.item1} label='Username' onChangeText={(text)=>
+                         setUsername({username:text})}/>
+                         <PasswordInput style={styles.item1} lable="password" onChangeText = {(text)=>
+                             setPassword({password:text})}/>
+                     </View>
+
                     <View style={{alignItems: 'flex-start'}}>
                         <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
                             <Text style={styles.appButtonText}>Login</Text>

@@ -4,47 +4,7 @@ import {getRemoteData} from './Util';
 import {URL_CHECK_USER, URL_EVENTS} from './Constants'
 import Spinner from "./Spinner";
 import styles from "../styles/Styles";
-import {TextInput} from "react-native-paper";
 
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         flexDirection: 'row',
-//         flexWrap: 'nowrap',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         width: "95%",
-//         height: 20,
-//         margin: 5
-//     },
-//     item: {
-//         width: '40%',
-//         marginLeft: 10
-//     },
-//     button: {
-//         width: "20%",
-//         alignItems: 'stretch',
-//     },
-//     link: {
-//         width: '50%',
-//         margin: 20,
-//         color: 'blue',
-//
-//     },
-//     clrGrey: {
-//         backgroundColor: "#d9e3f0"
-//     },
-//     clrCyan: {
-//         backgroundColor: "white"
-//     },
-//     rowStyle: {
-//         flexDirection: 'row',
-//         justifyContent: 'flex-start',
-//         margin: 10
-//     }
-//
-// })
 export const EventDetail = ({route, navigation}) => {
 
     console.log(route.params)
@@ -110,7 +70,7 @@ export const EventDetail = ({route, navigation}) => {
 
     return (
         <>
-            <View style={{flex: 0.04, backgroundColor: 'rgb(20,20,20)', flexDirection: 'row',flexGrow:0.04}}>
+            <View style={{flex: 0.04, backgroundColor: 'rgb(20,20,20)', flexDirection: 'row',}}>
                 <Text style={{color: 'white', textAlign: 'left',width:'40%'}}>{event_name}</Text>
                 <Text style={{color: 'white', textAlign: 'right',marginRight:15,width : '56%'}}>{username.username}</Text>
             </View>
@@ -118,39 +78,46 @@ export const EventDetail = ({route, navigation}) => {
                 flex: 0.8,
                 justifyContent: "space-around",
                 alignItems: 'center',
-                margin: "3%",
+                margin: "5%",
                 backgroundColor: '#ffffff'
             }}>
 
-                <View style={[styles.container, styles.clrGrey]}>
-                    <Text style={styles.url}>Event Name</Text>
-                    <Text style={styles.url}>{event_name}</Text>
+                <View style={[styles.container, ]}>
+                    <Text style={styles.eventItem}>Event Name</Text>
+                    <Text style={styles.itemValue}>{event_name}</Text>
                 </View>
-                <View style={[styles.container, styles.clrCyan]}>
-                    <Text style={styles.url}>Event Venue</Text>
-                    <Text style={styles.url}>{event_venue}</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={[styles.container,]}>
+                    <Text style={styles.eventItem}>Event Venue</Text>
+                    <Text style={styles.itemValue}>{event_venue}</Text>
                 </View>
-                <View style={[styles.container, styles.clrGrey]}>
-                    <Text style={styles.url}>Event Date</Text>
-                    <Text style={styles.url}>{event_date}</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={[styles.container,]}>
+                    <Text style={styles.eventItem}>Event Date</Text>
+                    <Text style={styles.itemValue}>{event_date}</Text>
                 </View>
-                <View style={[styles.container, styles.clrCyan]}>
-                    <Text style={styles.url}>Event time</Text>
-                    <Text style={styles.url}>{event_time}</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={styles.container }>
+                    <Text style={styles.eventItem}>Event Time</Text>
+                    <Text style={styles.itemValue}>{event_time}</Text>
                 </View>
-                <View style={[styles.container, styles.clrGrey]}>
-                    <Text style={styles.url}>Event Description</Text>
-                    <Text style={styles.url}>{event_description}</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={[styles.container, ]}>
+                    <Text style={styles.eventItem}>Event Description</Text>
+                    <Text style={styles.itemValue}>{event_description}</Text>
                 </View>
-                <View style={[styles.container, styles.clrCyan]}>
-                    <Text style={styles.url}>Event Admin(s)</Text>
-                    <Text style={styles.url}>{event_admin}</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={[styles.container, ]}>
+                    <Text style={styles.eventItem}>Event Admin(s)</Text>
+                    <Text style={styles.itemValue}>{event_admin}</Text>
                 </View>
-                <View style={[styles.container, styles.clrGrey]}>
-                    <Text style={styles.url}>Venue Link</Text>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+                <View style={[styles.container, ]}>
+                    <Text style={styles.eventItem}>Venue Link</Text>
                     <Text style={styles.link}
                           onPress={() => Linking.openURL(event_link)}>{event_link}</Text>
                 </View>
+                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
                 <View style={styles.container}>
                     <View style={{margin: 10,flexDirection:'row'}}>
                         <TouchableOpacity  style={styles.appButtonContainer} onPress={() => {
@@ -204,21 +171,25 @@ export const Events = ({route, navigation}) => {
         fetchEvents(events)
     }, [])
 
-    // onPress={navigation.navigate('EventDetail',e)}
+
 
     const element = events.map((e, index) => {
         return (
-            <View key={index} style={{flexDirection: 'row', alignItems: 'center',}}>
 
-                <Text style={{color: 'green', fontWeight: 'bold'}}>{index + 1})</Text>
+            <View key={index} style={{alignItems: 'center', width: '100%'}}>
                 <TouchableOpacity>
-                    <Text style={styles.link}
+                    <Text style={{color:'blue'}}
                           onPress={() => navigation.navigate("EventDetail", {
                               'event': e,
                               'username': {username}
                           })}>{e.event_name}</Text>
                 </TouchableOpacity>
+                <View style={{width: '100%', height: 1, backgroundColor: 'grey', margin: 10}}/>
             </View>
+
+
+
+
 
         )
     })

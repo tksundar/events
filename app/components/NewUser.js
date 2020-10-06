@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import {Button, ScrollView,  StyleSheet, TextInput,Switch, Text, View, TouchableOpacity} from 'react-native'
+import {ScrollView,SafeAreaView,  StyleSheet, Text, View, TouchableOpacity} from 'react-native'
+import {TextInput} from "react-native-paper";
 import {getRemoteData} from './Util'
 import {URL_NEW_USER} from "./Constants"
-import {SafeAreaView} from "react-native-safe-area-context";
 import styles from "../styles/Styles";
+import PasswordInput from "./PasswordInput";
 
 const NewUser = ({navigation}) => {
 
@@ -72,42 +73,19 @@ const NewUser = ({navigation}) => {
                 }}>
 
                     <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <Text>Username</Text>
-                        <TextInput style={styles.item}
-                                   placeholder="username" onChangeText={(text) => setUsername({username: text})}/>
-                    </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <TextInput style={styles.item}   placeholder="Email Address"
+                        <TextInput style={styles.item1}
+                                   label="Username" onChangeText={(text) => setUsername({username: text})}/>
+                        <TextInput style={styles.item1}   label="Email Address"
                                    onChangeText={(text) => setEmail({email: text})}/>
-                    </View>
-
-
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-
-                        <TextInput style={styles.item} placeholder="Mobile"
+                        <TextInput style={styles.item1} label="Mobile"
                                    onChangeText={(text) => setMobile({mobile: text})}/>
-                    </View>
-
-
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-
-                        <TextInput style={styles.item}
-                                   placeholder='password' secureTextEntry={showPassword}
+                        <PasswordInput style={styles.item1}
+                                   label='Password'
                                    onChangeText={(text) => setPassword({password: text})}/>
 
-                    </View>
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-
-                        <TextInput style={styles.item}
-                                   placeholder='confirm password' secureTextEntry={showPassword}
+                        <PasswordInput style={styles.item1}
+                                   label='Confirm password'
                                    onChangeText={(text) => setConfirmPassword({confirmPassword: text})}/>
-                        <View style={{flexDirection: 'row'}}>
-                            <Switch
-                                trackColor={{false: "#767577", true: "#81b0ff"}}
-                                thumbColor={showPassword ? "#f5dd4b" : "#f4f3f4"}
-                                value={!showPassword} onValueChange={() => setShowPassword(!showPassword)}/>
-                            <Text style={{fontSize: 10, marginTop: 5}}>show password</Text>
-                        </View>
                     </View>
 
 

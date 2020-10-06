@@ -47,18 +47,16 @@ const ShowProgram = ({route, navigation}) => {
  const element = programs.map((p, index) => {
         let thePerson = p.speaker === 'NA' ? p.presenter:p.speaker
         return (
-            <><View style={{margin:5}}>
-
-                <View key={index} style={{flexDirection:'row'}}>
-                    <Text style={{width:'20%',alignItems:'center'}}>{p.date}:</Text>
-                    <Text style={{width:'15%',alignItems:'center'}}>{p.time.substring(0,5)}</Text>
-                    <Text style={{width:'40%',alignItems:'center'}}>{p.title}</Text>
-                    <Text style={{width:'25%',alignItems:'center'}}>{thePerson}</Text>
-
+            <>
+                <View  style={{margin: 5}}>
+                    <View key={index} style={{flexDirection: 'row'}}>
+                        <Text style={{width: '21%', alignItems: 'center'}}>{p.date}</Text>
+                        <Text style={{width: '15%', alignItems: 'center'}}>{p.time.substring(0, 5)}</Text>
+                        <Text style={{width: '40%', alignItems: 'center'}}>{p.title}</Text>
+                        <Text style={{width: '24%', alignItems: 'center'}}>{thePerson}</Text>
+                    </View>
+                    <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
                 </View>
-                 <View style={{width:'100%',height:1,backgroundColor:'grey',marginTop:5}}/>
-
-     </View>
 
             </>
 
@@ -77,10 +75,10 @@ const ShowProgram = ({route, navigation}) => {
                  <>
                      <View style={{margin:5}}>
                 <View style={{flexDirection:'row', backgroundColor:'#0a0a0a' }}>
-                        <Text style={{width:'20%',fontWeight:'bold',color:'#fff'}}>Date</Text>
+                        <Text style={{width:'21%',fontWeight:'bold',color:'#fff'}}>Date</Text>
                         <Text style={{width:'15%',fontWeight:'bold',color:'#fff'}}>Time</Text>
                         <Text style={{width:'40%',fontWeight:'bold',color:'#fff'}}>Program</Text>
-                        <Text style={{width:'25%',fontWeight:'bold',color:'#fff'}}>Presenter</Text>
+                        <Text style={{width:'24%',fontWeight:'bold',color:'#fff'}}>Presenter</Text>
                 </View>
                      </View>
             {element}

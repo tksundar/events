@@ -35,6 +35,14 @@ const styles = StyleSheet.create({
         color: 'black',
         margin: 10
     },
+      item1: {
+        width: 300,
+        borderColor: 'gray',
+          backgroundColor:'azure',
+        borderWidth: 1,
+        color: 'black',
+        margin: 10
+    },
     label: {
        color: 'black',
 
@@ -61,11 +69,26 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         margin:5
     },
+     appButtonContainer1: {
+        elevation: 8,
+        backgroundColor: "azure",
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        margin:5
+    },
     appButtonText: {
         fontSize: 10,
         color: "#ffffff",
         fontWeight: "bold",
         alignSelf: "center",
+        // textTransform: "uppercase"
+    },
+     appButtonText1: {
+        fontSize: 20,
+        fontWeight: "bold",
+        alignSelf: "center",
+         color:'blue'
         // textTransform: "uppercase"
     },
     container: {
@@ -78,17 +101,20 @@ const styles = StyleSheet.create({
         height: 20,
         margin: 5
     },
-    url: {
-        width: '40%',
-        marginLeft: 10
+    eventItem: {
+        width: '30%',
+        marginLeft: 40
+    },
+    itemValue:{
+          width: '80%',
     },
     button: {
         width: "20%",
         alignItems: 'stretch',
     },
     link: {
-        width: '50%',
-        margin: 20,
+         width: '78%',
+        fontSize: 11,
         color: 'blue',
 
     },
@@ -102,7 +128,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         margin: 10
+    },
+    title:{
+        fontSize: 14,
+        fontWeight:'bold',
+        color: 'darkgrey',
+    },
+    row:{
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        height:56,
+        paddingLeft:25,
+        paddingRight:18,
+        alignItems:'center',
+        backgroundColor: 'azure',
+    },
+    parentHr:{
+        height:1,
+        color: 'white',
+        width:'100%'
+    },
+    child:{
+        backgroundColor: 'lightgrey',
+        padding:16,
     }
+
 
 })
 
