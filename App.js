@@ -1,68 +1,8 @@
-// import React, {useState} from 'react';
-// import {Button, StyleSheet, Text, View} from 'react-native';
-//
-// const Styles = StyleSheet.create({
-//
-//     center: {
-//         alignItems: "center"
-//     }
-// });
-//
-// const Greetings = (props) => {
-//
-//     return (
-//         <View style={Styles.center}>
-//             <Text>Hello, {props.name}</Text>
-//         </View>
-//     );
-// }
-//
-// const LotsOfGreetings = () => {
-//     return (
-//         <View style={[Styles.center, {top: 50}]}>
-//
-//             <Greetings name="Rexaar"/>
-//             <Greetings name="Babu"/>
-//             <Greetings name="piku"/>
-//
-//         </View>
-//     )
-// }
-//
-// const ButtonClick = () => {
-//
-//     const [count, setCount] = useState(0);
-//
-//     return (
-//         <View style={{flex: 1}}>
-//             <View style={{flex: 1}}>
-//                 <LotsOfGreetings/>
-//                 <LotsOfGreetings/>
-//             </View>
-//             <View style={{flex: 1}}>
-//                 <Text> You clicked {count} times</Text>
-//                 <Button style={{flex: 1}}
-//
-//                         onPress={() => {
-//                             setCount(count + 1);
-//
-//                         }
-//
-//                         }
-//                         title="Click Me"
-//                 />
-//             </View>
-//
-//         </View>
-//     );
-// }
-//
-// export default ButtonClick
-
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, View, Text,TouchableHighlight,Image } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import AnimatedSplash from "react-native-animated-splash-screen";
 
 
 class HeaderNavigationBar extends React.Component {
@@ -115,13 +55,37 @@ function NotificationsScreen({ navigation }) {
   );
 }
 const Drawer = createDrawerNavigator();
+
+
 export default function App() {
+
+    const [isLoaded,setIsLoaded] = useState(false)
+
+    const setLoaded =  ()=>{
+        setLoaded(true)
+
+    }
+
+    useEffect(() => {
+        setIsLoaded(isLoaded)
+    }, false)
+
+
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+      <AnimatedSplash
+          translucent={true}
+          isLoaded={isLoaded}
+          logoImage={require("./app/images/event-icon.png")}
+          backgroundColor={"#262626"}
+          logoHeight={150}
+          logoWidth={150}
+      >
+          <NavigationContainer>
+              <Drawer.Navigator initialRouteName="Home">
+                  <Drawer.Screen name="Home" component={HomeScreen}/>
+                  <Drawer.Screen name="Notifications" component={NotificationsScreen}/>
+              </Drawer.Navigator>
+          </NavigationContainer>
+      </AnimatedSplash>
   )
 }

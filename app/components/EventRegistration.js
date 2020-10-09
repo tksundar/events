@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
-import {TouchableOpacity, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native'
+import {TouchableOpacity, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {Button, TextInput} from "react-native-paper";
 import {getRemoteData} from './Util';
-import {URL_EVENT_REGISTRATION} from "./Constants"
+import {URL_CHECK_USER, URL_EVENT_REGISTRATION} from "./Constants"
 import {SafeAreaView} from "react-native-safe-area-context";
+import styles from "../styles/Styles";
+import {Picker} from "@react-native-community/picker";
+import TopBanner from "./TopBanner";
+import Spinner from "./Spinner";
 
 
 const EventRegistration = ({route, navigation}) => {
@@ -17,13 +22,12 @@ const EventRegistration = ({route, navigation}) => {
     const [arrivalTime, setArrivalTime] = useState('')
     const [departureDate, setDepartureDate] = useState('')
     const [modeOfTravel, setModeOfTravel] = useState('')
-    const [pickup, setPickup] = useState('')
+    const [pickup, setPickup] = useState("")
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+
     const handleSubmit = async () => {
-        console.log('Event Registration.handleSubmit called with', event.event_name,
-            name.name, payment.payment, paymentRef.paymentRef, numGuests.numGuests, numDays.numDays, arrivalDate.arrivalDate,
-            arrivalTime.arrivalTime, departureDate.departureDate, modeOfTravel.modeOfTravel, pickup.pickup)
         const formData = new FormData();
 
         let _name = name.name === undefined ? username.username : name.name
@@ -48,148 +52,112 @@ const EventRegistration = ({route, navigation}) => {
         formData.append('departure_date', departureDate.departureDate)
         formData.append('mode_of_travel', _mt)
         formData.append('pickup', _pickup)
+        setLoading(true)
         const response = await getRemoteData(URL_EVENT_REGISTRATION, formData)
+        setLoading(false)
         console.log(response.staus, '\n', response.data)
         if (response.data.update === 'success') {
-            navigation.navigate('SuccessPage')
+            let formData = new FormData();
+            formData.append('name', name.name);
+            formData.append('event_name', event.event_name);
+            setLoading(true)
+            const response = await getRemoteData(URL_CHECK_USER, formData);
+            setLoading(false)
+            navigation.navigate('RegistrationDetails', response.data)
         } else {
             setError(response.data.update)
         }
 
     }
+    const getElement = () => {
+        if (loading) {
+            return (
+                <>
+                    <TopBanner/>
+                    <Spinner/>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <View style={{backgroundColor: '#000', flexDirection: 'row', justifyContent: 'flex-end'}}>
+                        <Text style={{height: 20, color: 'white', fontSize: 15, marginRight: 15}}>{username}</Text>
+                    </View>
 
+                    <View style={{flex: 0.6, alignItems: 'center'}}>
+                        <ScrollView>
+                            <SafeAreaView>
+                                <Text>{error.error}</Text>
+                                <TextInput style={styles.item1}
+                                           label={event.event_name}
+                                           disabled={'true'}/>
+                                <TextInput style={styles.item1} value={username.username} label={"Username"}
+                                           onChangeText={(text) => setName({name: text})}/>
+
+
+                                <TextInput style={styles.item1}
+                                           label="Payment Amount"
+                                           onChangeText={(text) => setPayment({payment: text})}/>
+
+
+                                <TextInput style={styles.item1} label="Payment Ref"
+                                           onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
+
+
+                                <TextInput style={styles.item1}
+                                           label="Num Guests" value={"1"}
+                                           onChangeText={(text) => setNumGuests({numGuests: text})}/>
+
+
+                                <TextInput style={styles.item1} label={"Num Days"}
+                                           value="1" onChangeText={(text) => setNumDays({numDays: text})}/>
+
+
+                                <TextInput style={styles.item1} label={"Arrival Date"}
+                                           value={event.event_date}
+                                           onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
+
+
+                                <TextInput style={styles.item1} label={"Arrival Time"}
+                                           value={event.event_time.substring(0, 5)}
+                                           onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
+
+
+                                <TextInput style={styles.item1}
+                                           label='Departure Date'
+                                           onChangeText={(text) => setDepartureDate({departureDate: text})}/>
+
+
+                                <TextInput style={styles.item1}
+                                           label='Mode of Travel'
+                                           placeholder={"Air|Train|Road"}
+                                           onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
+
+                                <TextInput style={styles.item1} label={"Pickup Required"}
+                                           placeholder={"Yes|No"}
+                                           onChangeText={(text) => setPickup({pickup: text})}/>
+
+                                <View style={{alignItems: 'center', marginTop: 20}}>
+                                    <Button mode='outlined' onPress={handleSubmit}>
+                                        Register
+                                    </Button>
+
+                                </View>
+                            </SafeAreaView>
+                        </ScrollView>
+                    </View>
+
+                </>
+
+            )
+        }
+    }
 
     return (
-        <>
-            <View style={styles.banner}>
-                <Text style={{color: 'white', fontSize: 20}}>Registration for {event.event_name}</Text>
-                <Text style={{color: 'white', justifyContent: 'flex-end'}}>{username.username}</Text>
-            </View>
-
-            <ScrollView style={{
-                backgroundColor: '#d9e3f0',
-                marginHorizontal: 20,
-            }}>
-                <SafeAreaView>
-                    <Text>{error.error}</Text>
-
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Event Name</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_name}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Name</Text>
-                            <TextInput style={styles.item} defaultValue={username.username}
-                                       onChangeText={(text) => setName({name: text})}/>
-                        </View>
-                    </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Payment</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="Payment Amount"
-                                       onChangeText={(text) => setPayment({payment: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Payment Ref</Text>
-                            <TextInput style={styles.item} placeholder="Payment Ref"
-                                       onChangeText={(text) => setPaymentRef({paymentRef: text})}/>
-                        </View>
-                    </View>
-
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Num of guests</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="1" onChangeText={(text) => setNumGuests({numGuests: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Num of Days</Text>
-                            <TextInput style={styles.item}
-                                       placeholder="1" onChangeText={(text) => setNumDays({numDays: text})}/>
-                        </View>
-                    </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Arrival Date</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_date}
-                                       onChangeText={(text) => setArrivalDate({arrivalDate: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Arrival Time</Text>
-                            <TextInput style={styles.item}
-                                       placeholder={event.event_time}
-                                       onChangeText={(text) => setArrivalTime({arrivalTime: text})}/>
-                        </View>
-                    </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Departure Date</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='' onChangeText={(text) => setDepartureDate({departureDate: text})}/>
-                        </View>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Mode Of Travel</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='Mode of Travel'
-                                       onChangeText={(text) => setModeOfTravel({modeOfTravel: text})}/>
-                        </View>
-                    </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start', margin: 5}}>
-                            <Text>Pickup Required</Text>
-                            <TextInput style={styles.item}
-                                       placeholder='No' onChangeText={(text) => setPickup({pickup: text})}/>
-
-                        </View>
-                    </View>
-                    <View style={styles.hflex}>
-                        <View style={{alignItems: 'flex-start'}}>
-                            <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
-                                <Text styles={styles.appButtonText}>Register</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </SafeAreaView>
-            </ScrollView>
-
-
-        </>
-
+        getElement()
     )
 
 }
 
-const styles = StyleSheet.create({
-    hflex: {
-        flex: 1,
-        flexDirection: 'column',
-        margin: 5,
-        alignItems: "flex-start",
-        justifyContent: "space-evenly"
-    },
-
-    vFlex: {
-        flexDirection: 'column',
-
-        justifyContent: 'space-evenly'
-    },
-
-    banner: {
-        justifyContent: 'center',
-        backgroundColor: '#2196F3',
-        alignItems: 'flex-end',
-        margin: 10,
-    },
-    item: {
-        height: 40,
-        width: 200,
-        borderColor: 'gray',
-        borderWidth: 1
-    },
-})
 
 export default EventRegistration

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Button, Switch, Text, TouchableOpacity, View} from 'react-native'
+import { Switch, Text, TouchableOpacity, View} from 'react-native'
 import {TextInput} from "react-native-paper";
 import {getRemoteData} from './Util'
 import {URL_LOGIN} from './Constants'
@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 import HeaderNavigationBar from "./HeaderNavigationBar";
 import styles from "../styles/Styles";
 import PasswordInput from "./PasswordInput";
+import Button from "react-native-paper/src/components/Button";
 
 
 const Login = (props) => {
@@ -51,8 +52,8 @@ const Login = (props) => {
                     flex: 1,
                     justifyContent: 'space-evenly', alignItems: 'center',
                 }}>
-                    <Text style={{margin:10,fontWeight:'bold', fontSize:20}}>Login</Text>
-                     <View style={{marginTop:40 , alignItems:'center'}}>
+                    <Text style={{marginTop:20,fontWeight:'bold', fontSize:20}}>Login</Text>
+                     <View style={{marginTop:20 , alignItems:'center'}}>
                          <TextInput style={styles.item1} label='Username' onChangeText={(text)=>
                          setUsername({username:text})}/>
                          <PasswordInput style={styles.item1} lable="password" onChangeText = {(text)=>
@@ -60,9 +61,9 @@ const Login = (props) => {
                      </View>
 
                     <View style={{alignItems: 'flex-start'}}>
-                        <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
-                            <Text style={styles.appButtonText}>Login</Text>
-                        </TouchableOpacity>
+                        <Button mode={'outlined'} onPress={handleSubmit}>
+                            Login</Button>
+
                     </View>
                     <View style={{flex: 0.2, maginLeft: 30, alignItems: 'flex-start', flexDirection: 'row'}}>
                         <Text style={{alignItems: 'flex-start', marginRight: 20, color: 'black'}}>New User?</Text>

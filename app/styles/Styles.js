@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
       item1: {
         width: 300,
         borderColor: 'gray',
-          backgroundColor:'azure',
+          backgroundColor:'#fff',
         borderWidth: 1,
         color: 'black',
         margin: 10
@@ -79,13 +79,20 @@ const styles = StyleSheet.create({
     },
     appButtonText: {
         fontSize: 10,
-        color: "#ffffff",
+        color: "white",
         fontWeight: "bold",
         alignSelf: "center",
         // textTransform: "uppercase"
     },
      appButtonText1: {
         fontSize: 20,
+        fontWeight: "bold",
+        alignSelf: "center",
+         color:'blue'
+        // textTransform: "uppercase"
+    },
+     appButtonText2: {
+        fontSize: 10,
         fontWeight: "bold",
         alignSelf: "center",
          color:'blue'

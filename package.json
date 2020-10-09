@@ -21,6 +21,7 @@
     "axios": "^0.20.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
+    "react-native-animated-splash-screen": "^2.0.5",
     "react-native-collapsible": "^1.5.3",
     "react-native-document-picker": "^3.5.4",
     "react-native-dotenv": "^2.4.0",

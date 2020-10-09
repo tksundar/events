@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
-import {View,  Text, TouchableOpacity} from "react-native";
-import {TextInput} from "react-native-paper";
+import {View,  Text} from "react-native";
+import {TextInput,Button} from "react-native-paper";
 import {URL_FORGOT_PASSWORD} from "./Constants";
 import {getRemoteData} from "./Util";
 import styles from "../styles/Styles";
@@ -55,18 +55,18 @@ const ForgotPassword = (props) =>{
                 </View>
                 <View style={{justifyContent:'center',alignItems:'center'}}>
                     <View >
-                        <Text style={{margin:20,fontSize: 15, fontWeight:'bold', textAlign:'center'}}>Forgot Password</Text>
+                        <Text style={{marginTop:20, fontSize:20,fontWeight:'bold', textAlign:'center'}}>Forgot Password</Text>
                     </View>
 
                 </View>
-            <View style={{justifyContent:'center',alignItems: 'center',marginTop:50}}>
+            <View style={{justifyContent:'center',alignItems: 'center',marginTop:20}}>
                 <TextInput style={styles.item1} label="Email Address"
                            onChangeText={(text) => setEmail({email: text})}/>
             </View>
             <View style={{justifyContent:'center',alignItems: 'center',marginTop:20}}>
-                <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
-                    <Text style={styles.appButtonText}>Submit</Text>
-                </TouchableOpacity>
+                <Button mode={'outlined'} onPress={handleSubmit}>
+                   Submit
+                </Button>
             </View>
             <View style={{marginTop: 20}}><Text style={{color:'red'}}>{error}</Text></View>
         </>

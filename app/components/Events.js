@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import { Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {Button} from 'react-native-paper'
 import {getRemoteData} from './Util';
 import {URL_CHECK_USER, URL_EVENTS} from './Constants'
 import Spinner from "./Spinner";
@@ -18,9 +19,11 @@ export const EventDetail = ({route, navigation}) => {
         formData.append('name', username.username);
         formData.append('event_name', event.event_name);
         const response = await getRemoteData(URL_CHECK_USER, formData);
-        console.log("CheckRegistration =>", response.data)
-        if (response.data.name === username.username) {
-            setRegistration(response.data)
+        console.log("CheckRegistration =>", response.status)
+        if(response.status === 200) {
+            if (response.data.name === username.username) {
+                setRegistration(response.data)
+            }
         }
     }
 
@@ -120,24 +123,24 @@ export const EventDetail = ({route, navigation}) => {
                  <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
                 <View style={styles.container}>
                     <View style={{margin: 10,flexDirection:'row'}}>
-                        <TouchableOpacity  style={styles.appButtonContainer} onPress={() => {
+                        <TouchableOpacity  style={styles.appButtonContainer1} onPress={() => {
                             if (registration.name === username.username) {
                                 navigation.navigate('RegistrationDetails', registration)
                             } else {
                                 navigation.navigate("EventRegistration", {'event': event, 'username': username.username})
                             }
-                        }}><Text style={styles.appButtonText}>Register</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.appButtonContainer}
+                        }}><Text style={styles.appButtonText2}>Register</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.appButtonContainer1}
                                           onPress={() => navigation.navigate("ShowMedia", {"event":event,"username":username.username})}>
-                            <Text style={styles.appButtonText}>View Media</Text>
+                            <Text style={styles.appButtonText2}>View Media</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.appButtonContainer}
+                        <TouchableOpacity style={styles.appButtonContainer1}
                                           onPress={() => navigation.navigate("UploadMedia", {"event":event,"username":username.username})}>
-                            <Text style={styles.appButtonText}>Upload Media</Text>
+                            <Text style={styles.appButtonText2}>Upload Media</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.appButtonContainer}
+                        <TouchableOpacity style={styles.appButtonContainer1}
                                           onPress={() => navigation.navigate("ViewProgram", {"event":event,"username":username.username})}>
-                            <Text style={styles.appButtonText}>View Program</Text>
+                            <Text style={styles.appButtonText2}>View Program</Text>
                         </TouchableOpacity>
                     </View>
 

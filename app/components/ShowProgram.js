@@ -48,7 +48,7 @@ const ShowProgram = ({route, navigation}) => {
         let thePerson = p.speaker === 'NA' ? p.presenter:p.speaker
         return (
             <>
-                <View  style={{margin: 5}}>
+                <View  key={index} style={{margin: 5}}>
                     <View key={index} style={{flexDirection: 'row'}}>
                         <Text style={{width: '21%', alignItems: 'center'}}>{p.date}</Text>
                         <Text style={{width: '15%', alignItems: 'center'}}>{p.time.substring(0, 5)}</Text>

@@ -4,22 +4,47 @@
 
 import React,{useState} from 'react'
 import {View,Text,TouchableOpacity} from 'react-native'
-import {TextInput} from "react-native-paper";
+import {TextInput,Button} from "react-native-paper";
 import Registrations from "./Registrations";
 import styles from "../styles/Styles";
 import HeaderNavigationBar from "./HeaderNavigationBar";
 import PasswordInput from "./PasswordInput";
+import {URL_CHECK_ADMIN} from "./Constants";
+import {getRemoteData} from "./Util";
+import Spinner from "./Spinner";
+import TopBanner from "./TopBanner";
 
-const ViewRegistrations = (props)=>{
+const ViewRegistrations = ({route,navigation})=>{
 
-    const {route,navigation} = props
-    const [admin,setAdmin] = useState(false)
     const [username,setUsername] = useState('')
-    const [pwd,setPwd] = useState('')
+    const [password,setPassword] = useState('')
+    const [loading,setLoading] = useState(false)
     const [error,setError] = useState('')
-    const {event_name} = route
+    const {event_name} = route.params
 
-    const handleSubmit = ()=>{
+
+    const handleSubmit = async ()=>{
+         let data = new FormData();
+         data.append('username',username.username)
+         data.append('password',password.password)
+         data.append('event_name',event_name)
+         const response = await getRemoteData(URL_CHECK_ADMIN,data)
+        if(response.status === 200){
+            if (response.data.status !== "invalid"){
+                setLoading(true)
+                navigation.navigate("Registrations", {
+                    "registrations" : response.data,
+                    "username" : username.username,
+                    "event_name": event_name
+                })
+            }else{
+                setError("You are not authorised to view this page")
+            }
+        }else{
+            console.log('status code =', response.status)
+            setError("Server error")
+        }
+
     }
 
      const Header= ()=>{
@@ -37,29 +62,28 @@ const ViewRegistrations = (props)=>{
         )
      }
     const getElement = ()=>{
-        if(admin){
+        if(loading){
             return (
-                <>
-                    <Header/>
-                    <Registrations event_name={event_name}/>
+             <>
+                    <TopBanner/>
+                   <Spinner/>
                 </>
             )
         }else{
             return ( <>
-                     <View style={{alignItems:'center'}}><Text style=
+                     <View style={{alignItems:'center',marginTop :'10%'}}><Text style=
                                                                {{fontSize:20}}>View Registrations</Text></View>
                      <View style={{marginTop:40 , alignItems:'center'}}>
                          <Text style={{textAlign:'center'}}>If you are admin for the {event_name}, please login</Text>
                          <TextInput style={styles.item1} label='Username' onChangeText={(text)=>
                          setUsername({username:text})}/>
                          <PasswordInput style={styles.item1} lable="password" onChangeText = {(text)=>
-                             setPwd({pwd:text})}/>
+                             setPassword({password:text})}/>
                      </View>
                        <View style={{marginTop:20 , alignItems:'center'}}>
-                    <TouchableOpacity style={styles.appButtonContainer1} onPress={handleSubmit}>
-                        <Text style={{fontSize: 20, color: 'blue',textAlign:'center'}}>Login</Text>
-                    </TouchableOpacity>
+                    <Button mode={'outlined'} onPress={handleSubmit}>Submit</Button>
                        </View>
+                    <View><Text style={{color:'red'}}>{error}</Text></View>
                 </>
             )
         }

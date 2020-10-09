@@ -3,8 +3,8 @@
  */
 
 import React, {Component} from 'react'
-import {View,  Text, Switch, Button, ScrollView,TouchableOpacity} from "react-native";
-import {TextInput} from "react-native-paper";
+import {View, Text, ScrollView, TouchableOpacity} from "react-native";
+import {TextInput,Button} from "react-native-paper";
 import PasswordInput from "./PasswordInput";
 import {URL_CHANGE_PASSWORD} from './Constants'
 import {getRemoteData} from "./Util";
@@ -44,7 +44,7 @@ class ChangePassword extends Component {
         formData.append('email', this.state.email)
         this.setState({loading: true})
         const response = await getRemoteData(URL_CHANGE_PASSWORD, formData)
-        this.setState({loading:false})
+        this.setState({loading: false})
 
         if (response.status === 200) {
             console.log(response.data)
@@ -74,73 +74,73 @@ class ChangePassword extends Component {
             })
         }
     }
-   getElement = ()=>{
-        if(this.state.loading){
+    getElement = () => {
+        if (this.state.loading) {
             return (
                 <>
                     <TopBanner/>
-                    <Spinner />
+                    <Spinner/>
                 </>
             )
-        }else{
+        } else {
             return (
-                  <>
+                <>
 
 
-                      <View style={styles.topBanner}>
-                          <View style={{
-                              alignItems: 'flex-start',
-                              width: '10%'
-                          }}><HeaderNavigationBar {...this.props.navigation}/></View>
-                          <View style={{alignItems: 'flex-end'}}>
-                              <Text style={{color: 'white', fontSize: 20, marginLeft: '70%'}}>Events</Text>
-                          </View>
-                      </View>
-                      <View style={{justifyContent: 'center',alignItems:'center'}}>
-                          <Text style={{marginTop: 40, fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>Change
-                              Password</Text>
-                      </View>
-
-                <SafeAreaView style={{justifyContent:'space-around'}}>
-                <ScrollView>
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'space-evenly', alignItems: 'center',
-                }}>
-                        <TextInput style={styles.item1} label="Email Address"
-                                   onChangeText={(text) => this.setState({email: text})}/>
-
-
-                        <PasswordInput style={styles.item1}
-                                   label='Old password'
-                                   onChangeText={(text) => this.setState({oldPassword: text})}/>
-
-
-
-                        <PasswordInput style={styles.item1}
-                                   label='New password'
-                                   onChangeText={(text) => this.setState({newPassword: text})}/>
-
-
-
-                        <PasswordInput style={styles.item1}
-                                   label='Confirm new password'
-                                   onChangeText={(text) => this.setState({confirmPassword: text})}/>
-
-
-                    <View style={{alignItems: 'flex-start'}}>
-                        <TouchableOpacity style={styles.appButtonContainer} onPress={this.handleSubmit}>
-                            <Text style={styles.appButtonText}>Submit</Text>
-                        </TouchableOpacity>
+                    <View style={styles.topBanner}>
+                        <View style={{
+                            alignItems: 'flex-start',
+                            width: '10%'
+                        }}><HeaderNavigationBar {...this.props.navigation}/></View>
+                        <View style={{alignItems: 'flex-end'}}>
+                            <Text style={{color: 'white', fontSize: 20, marginLeft: '70%'}}>Events</Text>
+                        </View>
                     </View>
-                    <View>
-                        <Text style={{color: 'red', fontWeight: 'bold'}}> {this.state.error}</Text>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{marginTop: 20, fontWeight: 'bold',fontSize:20, textAlign: 'center'}}>Change
+                            Password</Text>
                     </View>
 
-                </View>
+
+                    <ScrollView>
+                        <SafeAreaView style={{justifyContent: 'space-around', marginTop: 20}}>
+                            <View style={{
+                                flex: 1,
+                                justifyContent: 'space-evenly', alignItems: 'center',
+                            }}>
+                                <TextInput style={styles.item1} label="Email Address"
+                                           onChangeText={(text) => this.setState({email: text})}/>
+
+
+                                <PasswordInput style={styles.item1}
+                                               label='Old password'
+                                               onChangeText={(text) => this.setState({oldPassword: text})}/>
+
+
+                                <PasswordInput style={styles.item1}
+                                               label='New password'
+                                               onChangeText={(text) => this.setState({newPassword: text})}/>
+
+
+                                <PasswordInput style={styles.item1}
+                                               label='Confirm new password'
+                                               onChangeText={(text) => this.setState({confirmPassword: text})}/>
+
+
+                                <View style={{alignItems: 'flex-start'}}>
+                                    <Button mode={'outlined'} onPress={this.handleSubmit}>
+                                       Submit
+                                    </Button>
+                                </View>
+                                <View>
+                                    <Text style={{color: 'red', fontWeight: 'bold'}}> {this.state.error}</Text>
+                                </View>
+
+                            </View>
+                        </SafeAreaView>
                     </ScrollView>
-                </SafeAreaView>
-            </>
+
+                </>
 
             );
         }
@@ -148,7 +148,7 @@ class ChangePassword extends Component {
 
     render() {
         return (
-           this.getElement()
+            this.getElement()
         );
 
     }

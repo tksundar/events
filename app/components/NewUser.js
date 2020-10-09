@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {ScrollView,SafeAreaView,  StyleSheet, Text, View, TouchableOpacity} from 'react-native'
-import {TextInput} from "react-native-paper";
+import {Button, TextInput} from "react-native-paper";
 import {getRemoteData} from './Util'
 import {URL_NEW_USER} from "./Constants"
 import styles from "../styles/Styles";
@@ -48,7 +48,7 @@ const NewUser = ({navigation}) => {
         console.log(response.status, response.data)
         if (response.status === 200) {
             if (response.data.name === username.username) {
-                navigation.navigate('Events')
+                navigation.navigate('Events',{"username":username.username})
             } else if (response.data.status === 'existing') {
                 setErrorMessage('User exists. Please login. If you forgot your password,' +
                     'use the Forgot Password option to reset your password')
@@ -72,8 +72,9 @@ const NewUser = ({navigation}) => {
                     alignItems: 'center'
                 }}>
 
-                    <View style={{alignItems: 'flex-start', margin: 5}}>
-                        <TextInput style={styles.item1}
+                    <View style={{alignItems: 'center'}}>
+                        <Text style={{fontWeight:'bold',marginTop:20,fontSize:20}}>Register</Text>
+                        <TextInput style={[styles.item1,{marginTop:20}]}
                                    label="Username" onChangeText={(text) => setUsername({username: text})}/>
                         <TextInput style={styles.item1}   label="Email Address"
                                    onChangeText={(text) => setEmail({email: text})}/>
@@ -90,9 +91,7 @@ const NewUser = ({navigation}) => {
 
 
                     <View style={{alignItems: 'center'}}>
-                        <TouchableOpacity style={styles.appButtonContainer} onPress={handleSubmit}>
-                            <Text style={styles.appButtonText}>Register</Text>
-                        </TouchableOpacity>
+                       <Button mode={'outlined'} onPress={handleSubmit}>Register</Button>
                     </View>
 
                     <View style={styles.hflex}>

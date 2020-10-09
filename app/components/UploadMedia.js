@@ -7,6 +7,7 @@ import {URL_UPLOAD_MEDIA} from './Constants'
 import Spinner from "./Spinner";
 import {ProgressBar} from '@react-native-community/progress-bar-android'
 import styles from "../styles/Styles";
+import {Button} from "react-native-paper";
 
 
 export const UploadMedia = ({route, navigation}) => {
@@ -116,17 +117,17 @@ export const UploadMedia = ({route, navigation}) => {
             </View>
                     <View style={{justifyContent: 'center', alignItems: 'center', flex: 0.5}}>
                         <View style={{width: 200, margin: 25}}>
-                            <TouchableOpacity style={styles.appButtonContainer} onPress={selectMedia}>
-                                <Text style={styles.appButtonText}>Select Images</Text>
-                            </TouchableOpacity>
+                            <Button mode={'contained'} onPress={selectMedia}>
+                               Select Images
+                            </Button>
                         </View>
 
                         <View style={{width: 200, margin: 25}}>
                             <Text style={{margin: 10}}>You selected the following:</Text>
                             {imageMeta}
-                             <TouchableOpacity style={styles.appButtonContainer} onPress={upload}>
-                                <Text style={styles.appButtonText}>Upload Images</Text>
-                            </TouchableOpacity>
+                             <Button mode='contained' onPress={upload}>
+                                Upload Images
+                            </Button>
                         </View>
                     </View>
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
