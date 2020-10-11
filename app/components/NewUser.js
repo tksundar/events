@@ -5,9 +5,11 @@ import {getRemoteData} from './Util'
 import {URL_NEW_USER} from "./Constants"
 import styles from "../styles/Styles";
 import PasswordInput from "./PasswordInput";
+import HeaderNavigationBar from "./HeaderNavigationBar";
 
-const NewUser = ({navigation}) => {
+const NewUser = (props) => {
 
+    const{navigation} = props
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -65,6 +67,19 @@ const NewUser = ({navigation}) => {
 
     return (
         <>
+             <View style={styles.topBanner}>
+                        <View style={{
+                            alignItems: 'flex-start',
+                            width: '10%'
+                        }}><HeaderNavigationBar {...props.navigation}/></View>
+                        <View style={{alignItems: 'flex-end'}}>
+                            <Text style={{color: 'white', fontSize: 20, marginLeft: '70%'}}>Events</Text>
+                        </View>
+                    </View>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{marginTop: 20, fontWeight: 'bold',fontSize:20, textAlign: 'center'}}>Register
+                            </Text>
+                    </View>
             <ScrollView>
                 <SafeAreaView style={{
                     flex: 1,
@@ -73,7 +88,6 @@ const NewUser = ({navigation}) => {
                 }}>
 
                     <View style={{alignItems: 'center'}}>
-                        <Text style={{fontWeight:'bold',marginTop:20,fontSize:20}}>Register</Text>
                         <TextInput style={[styles.item1,{marginTop:20}]}
                                    label="Username" onChangeText={(text) => setUsername({username: text})}/>
                         <TextInput style={styles.item1}   label="Email Address"

@@ -180,13 +180,11 @@ export const Events = ({route, navigation}) => {
         return (
 
             <View key={index} style={{alignItems: 'center', width: '100%'}}>
-                <TouchableOpacity>
-                    <Text style={{color:'blue'}}
-                          onPress={() => navigation.navigate("EventDetail", {
+               <Button mode={'outlined'} onPress={() => navigation.navigate("EventDetail", {
                               'event': e,
                               'username': {username}
-                          })}>{e.event_name}</Text>
-                </TouchableOpacity>
+               })}>{e.event_name}</Button>
+
                 <View style={{width: '100%', height: 1, backgroundColor: 'grey', margin: 10}}/>
             </View>
 

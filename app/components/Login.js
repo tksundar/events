@@ -65,12 +65,6 @@ const Login = (props) => {
                             Login</Button>
 
                     </View>
-                    <View style={{flex: 0.2, maginLeft: 30, alignItems: 'flex-start', flexDirection: 'row'}}>
-                        <Text style={{alignItems: 'flex-start', marginRight: 20, color: 'black'}}>New User?</Text>
-                        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-                            <Text style={{color: 'blue'}}>Register</Text>
-                        </TouchableOpacity>
-                    </View>
                     <View>
                         <Text style={{color: 'red', fontWeight: 'bold'}}> {error}</Text>
                     </View>

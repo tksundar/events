@@ -57,6 +57,7 @@ const App = () => {
                         <Drawer.Screen name="Home" component={Home}/>
                         <Drawer.Screen name="Change Password" component={ChangePassword}/>
                         <Drawer.Screen name="Forgot Password" component={ForgotPassword}/>
+                        <Drawer.Screen name="New User" component={NewUser}/>
                         <Drawer.Screen name="Admin" component={AdminViews}/>
 
 
@@ -107,10 +108,10 @@ const Home = ({navigation}) => {
                               headerLeft: props => <HeaderLeft {...navigation}/>
                           }}/>
 
-            <Stack.Screen name="Register" component={NewUser}
-                          options={{
-                              headerTitle: props => <Title {...props} />
-                          }}/>
+            {/*<Stack.Screen name="Register" component={NewUser}*/}
+            {/*              options={{*/}
+            {/*                  headerTitle: props => <Title {...props} />*/}
+            {/*              }}/>*/}
             <Stack.Screen name="Events" component={Events}
                           options={{headerTitle: props => <Title {...props} />}}/>
             <Stack.Screen name="EventDetail" component={EventDetail}

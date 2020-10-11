@@ -14,17 +14,16 @@ const RegistrationDetails = ({route, navigation}) => {
 
     keys.forEach(key => {
         let row =
-            <View key={key} style={{flex: 1, flexDirection: 'row', alignItems: 'flex-start', marginLeft: 10}}>
-                <View style={{
-                    backgroundColor: '#4059bf',
-                    flexDirection: 'row', alignItems: 'flex-start', marginLeft: 10,
-                    flexGrow: 1,
-                }}>
-                    <Text
-                        style={{width: '50%', color: 'white', fontFamily: 'Verdana', fontStyle: 'normal'}}>{key}:</Text>
-                    <Text style={{width: "50%", color: 'white', fontFamily: 'Verdana'}}>{registration[key]}</Text>
-                </View>
+            <View>
+
+            <View key={key} style={{ flexDirection: 'row', alignItems: 'flex-start', marginLeft: 10}}>
+                   <Text
+                        style={{width: '50%',  fontFamily: 'Verdana', fontWeight: 'bold'}}>{key}:</Text>
+                    <Text style={{width: "50%",  fontFamily: 'Verdana'}}>{registration[key]}</Text>
             </View>
+ <View style={{width: '100%', height: 1, backgroundColor: 'grey', marginTop: 5}}/>
+
+                </View>
 
         rows.push(row)
 
@@ -35,12 +34,12 @@ const RegistrationDetails = ({route, navigation}) => {
             <View style={{backgroundColor: 'rgb(ff,ff,ff)', flex: 1}}>
                   <Text style={{color: 'white', textAlign:'right',marginRight: 15,width : '96%'}}>{registration.name}</Text>
                 <View style={{justifyContent: 'flex-start', alignItems: 'center'}}>
-                    <Text style={{fontSize: 15}}>Already Registered. Details given below</Text>
+                    <Text style={{fontSize: 15,fontWeight:'bold'}}>Your registration details are given below</Text>
                 </View>
 
-                <ScrollView style={{margin: 20}}>
+                <View style={{margin: 40,flex:0.6,borderColor:'grey',borderWidth:2}}>
                     {rows}
-                </ScrollView>
+                </View>
             </View>
         </>
     )

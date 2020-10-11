@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         alignSelf: "center",
-         color:'blue'
+         color: "blue"
         // textTransform: "uppercase"
     },
      appButtonText2: {
